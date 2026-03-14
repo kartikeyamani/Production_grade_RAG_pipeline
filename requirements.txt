@@ -1,0 +1,9 @@
+langchain
+langchain-community
+chromadb
+pypdf
+python-dotenv
+langchain-groq
+streamlit
+rank_bm25
+flashrank
