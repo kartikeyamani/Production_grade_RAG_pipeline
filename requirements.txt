@@ -7,3 +7,9 @@ langchain-groq
 streamlit
 rank_bm25
 flashrank
+pyyaml
+ensure
+python-box
+ragas
+datasets
+pandas

@@ -1,24 +1,34 @@
 import argparse
 import sys
-from src.document_processor import load_and_chunk_documents
-from src.vector_store import create_vector_store
-from src.rag_engine import setup_rag_pipeline
+from dotenv import load_dotenv
+
+load_dotenv()
+
+from src.pipeline.stage_01_data_ingestion import DataIngestionPipeline
+from src.config.configuration import ConfigurationManager
+from src.components.rag_engine import RAGEngine
+from src.logger.custom_logger import logger
 
 def ingest():
-    print("Starting ingestion process...")
-    chunks = load_and_chunk_documents()
-    if not chunks:
-        print("Ingestion failed: No chunks generated.")
-        sys.exit(1)
-        
-    create_vector_store(chunks)
-    print("Ingestion complete. You can now run chat mode.")
+    try:
+        logger.info("Starting Data Ingestion Pipeline...")
+        pipeline = DataIngestionPipeline()
+        pipeline.main()
+        logger.info("Ingestion complete. You can now run chat mode.")
+    except Exception as e:
+        logger.exception(e)
+        raise e
 
 def chat():
-    print("Starting chat mode...")
-    rag_chain = setup_rag_pipeline()
+    logger.info("Starting Chat Mode...")
+    config_manager = ConfigurationManager()
+    rag_config = config_manager.get_rag_engine_config()
+    
+    rag_engine = RAGEngine(config=rag_config)
+    rag_chain = rag_engine.setup_rag_pipeline()
+    
     if not rag_chain:
-        print("Failed to setup RAG pipeline. Did you run ingestion first?")
+        logger.error("Failed to setup RAG pipeline. Did you run ingestion first?")
         sys.exit(1)
         
     print("\n" + "="*50)
@@ -56,10 +66,10 @@ def chat():
             print("\nExiting...")
             break
         except Exception as e:
-            print(f"\nAn error occurred: {e}")
+            logger.error(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Production Grade RAG - Phase 1")
+    parser = argparse.ArgumentParser(description="Production Grade RAG - Phase 2")
     parser.add_argument("--ingest", action="store_true", help="Ingest documents from data/ and build vector store")
     parser.add_argument("--chat", action="store_true", help="Start the interactive chat session")
     

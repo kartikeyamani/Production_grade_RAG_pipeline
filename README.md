@@ -67,7 +67,7 @@ OLLAMA_MODEL=llama3
 OLLAMA_EMBEDDING_MODEL=nomic-embed-text
 
 GROQ_API_KEY=your_groq_api_key_here
-GROQ_MODEL=llama3-8b-8192
+GROQ_MODEL=llama-3.1-8b-instant
 ```
 
 ### 3. Installation

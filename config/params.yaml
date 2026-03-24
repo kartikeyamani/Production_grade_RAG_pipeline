@@ -1,0 +1,12 @@
+chunk_size: 1000
+chunk_overlap: 200
+
+ollama_embedding_model: nomic-embed-text
+top_k_vector: 10
+top_k_bm25: 10
+ensemble_weights: [0.5, 0.5]
+
+flashrank_top_n: 3
+
+groq_model: llama-3.3-70b-versatile
+llm_temperature: 0.0
