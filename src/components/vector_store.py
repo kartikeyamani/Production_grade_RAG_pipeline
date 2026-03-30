@@ -2,6 +2,7 @@ import os
 import shutil
 import pickle
 import sys
+import hashlib
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
 from src.logger.custom_logger import logger
@@ -46,17 +47,31 @@ class VectorStore:
             logger.info("Initializing embeddings model...")
             embeddings = self.get_embeddings()
             
-            logger.info(f"Embedding {len(chunks)} chunks and storing in Chroma...")
-            vectorstore = Chroma.from_documents(
-                documents=chunks,
-                embedding=embeddings,
+            from langchain_classic.retrievers import ParentDocumentRetriever
+            from langchain_core.stores import InMemoryStore
+            from langchain_text_splitters import RecursiveCharacterTextSplitter
+            
+            logger.info("Initializing ParentDocumentRetriever structure...")
+            store = InMemoryStore()
+            child_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=50)
+            
+            vectorstore = Chroma(
+                embedding_function=embeddings,
                 persist_directory=str(db_dir)
             )
             
-            # Save the raw chunks
+            retriever = ParentDocumentRetriever(
+                vectorstore=vectorstore,
+                docstore=store,
+                child_splitter=child_splitter,
+            )
+            
+            logger.info(f"Adding {len(chunks)} parent documents and generating child embeddings...")
+            retriever.add_documents(chunks, ids=None)
+            
             chunks_path = self.config.raw_chunks_path
             with open(chunks_path, "wb") as f:
-                pickle.dump(chunks, f)
+                pickle.dump(store.store, f)
                 
             logger.info("Vector database and raw chunks created successfully.")
             return vectorstore

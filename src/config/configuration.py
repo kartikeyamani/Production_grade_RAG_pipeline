@@ -1,7 +1,7 @@
 import os
 from src.constants import *
 from src.utils.common import read_yaml, create_directories
-from src.entity.config_entity import (DataIngestionConfig, VectorStoreConfig, RAGEngineConfig)
+from src.entity.config_entity import (DataIngestionConfig, VectorStoreConfig, RAGEngineConfig, EvaluationConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -81,6 +81,31 @@ class ConfigurationManager:
             )
             
             return rag_engine_config
+        except Exception as e:
+            import sys
+            from src.exception.custom_exception import CustomException
+            raise CustomException(e, sys)
+
+    def get_evaluation_config(self) -> EvaluationConfig:
+        try:
+            config = self.config.evaluation
+            vector_config = self.config.vector_store
+            params = self.params
+
+            create_directories([config.root_dir])
+
+            evaluation_config = EvaluationConfig(
+                root_dir=config.root_dir,
+                testset_path=config.testset_path,
+                results_path=config.results_path,
+                testset_size=params.testset_size,
+                groq_model=params.groq_model,
+                llm_temperature=params.llm_temperature,
+                raw_chunks_path=vector_config.raw_chunks_path,
+                ollama_eval_model=params.ollama_eval_model
+            )
+
+            return evaluation_config
         except Exception as e:
             import sys
             from src.exception.custom_exception import CustomException

@@ -1,6 +1,13 @@
 import os
 import sys
 import pickle
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Explicitly find and load the .env file in the root directory
+root_dir = Path(__file__).parent.parent.parent
+load_dotenv(dotenv_path=root_dir / ".env")
+
 from langchain_groq import ChatGroq
 from langchain_classic.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
@@ -75,11 +82,26 @@ class RAGEngine:
                 logger.error("Prerequisites for RAG pipeline missing.")
                 return None
                 
-            # Semantic Search
-            vector_retriever = vectorstore.as_retriever(search_kwargs={"k": self.config.top_k_vector})
+            from langchain_classic.retrievers import ParentDocumentRetriever
+            from langchain_core.stores import InMemoryStore
+            from langchain_text_splitters import RecursiveCharacterTextSplitter
             
-            # Keyword Search (Sparse)
-            bm25_retriever = BM25Retriever.from_documents(raw_chunks)
+            # Reconstruct the InMemoryStore for ParentDocumentRetriever
+            store = InMemoryStore()
+            store.store = raw_chunks  # this is the dict we pickled in vector_store!
+            
+            # Semantic Search via ParentDocumentRetriever
+            child_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=50)
+            vector_retriever = ParentDocumentRetriever(
+                vectorstore=vectorstore,
+                docstore=store,
+                child_splitter=child_splitter,
+            )
+            vector_retriever.search_kwargs = {"k": self.config.top_k_vector}
+            
+            # Keyword Search (Sparse) - feed it the list of parent docs!
+            parent_docs = list(raw_chunks.values())
+            bm25_retriever = BM25Retriever.from_documents(parent_docs)
             bm25_retriever.k = self.config.top_k_bm25
             
             # Hybrid Search
@@ -99,7 +121,7 @@ class RAGEngine:
             if not groq_api_key:
                 logger.error("GROQ_API_KEY not found in environment variables.")
                 return None
-
+            
             llm = ChatGroq(
                 model=self.config.groq_model,
                 temperature=self.config.llm_temperature

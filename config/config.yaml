@@ -11,3 +11,8 @@ vector_store:
 
 rag_engine:
   root_dir: artifacts/rag_engine
+
+evaluation:
+  root_dir: artifacts/evaluation
+  testset_path: artifacts/evaluation/testset_parent.csv
+  results_path: artifacts/evaluation/results_parent.csv

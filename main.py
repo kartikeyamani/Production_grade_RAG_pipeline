@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from src.pipeline.stage_01_data_ingestion import DataIngestionPipeline
+from src.pipeline.stage_04_evaluation import EvaluationPipeline
 from src.config.configuration import ConfigurationManager
 from src.components.rag_engine import RAGEngine
 from src.logger.custom_logger import logger
@@ -15,6 +16,16 @@ def ingest():
         pipeline = DataIngestionPipeline()
         pipeline.main()
         logger.info("Ingestion complete. You can now run chat mode.")
+    except Exception as e:
+        logger.exception(e)
+        raise e
+
+def evaluate():
+    try:
+        logger.info("Starting RAGAS Evaluation Pipeline...")
+        pipeline = EvaluationPipeline()
+        pipeline.main()
+        logger.info("Evaluation complete. Results saved to artifacts/evaluation/")
     except Exception as e:
         logger.exception(e)
         raise e
@@ -69,9 +80,10 @@ def chat():
             logger.error(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Production Grade RAG - Phase 2")
+    parser = argparse.ArgumentParser(description="Production Grade RAG Pipeline")
     parser.add_argument("--ingest", action="store_true", help="Ingest documents from data/ and build vector store")
     parser.add_argument("--chat", action="store_true", help="Start the interactive chat session")
+    parser.add_argument("--evaluate", action="store_true", help="Generate synthetic testset and score the RAG pipeline with ragas")
     
     args = parser.parse_args()
     
@@ -79,5 +91,7 @@ if __name__ == "__main__":
         ingest()
     elif args.chat:
         chat()
+    elif args.evaluate:
+        evaluate()
     else:
         parser.print_help()

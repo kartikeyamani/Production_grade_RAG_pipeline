@@ -10,3 +10,6 @@ flashrank_top_n: 3
 
 groq_model: llama-3.3-70b-versatile
 llm_temperature: 0.0
+
+testset_size: 10
+ollama_eval_model: gemma3:4b

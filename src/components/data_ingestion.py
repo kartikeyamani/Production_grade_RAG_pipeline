@@ -1,6 +1,8 @@
 import os
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_experimental.text_splitter import SemanticChunker
+from langchain_community.embeddings import OllamaEmbeddings
 from src.logger.custom_logger import logger
 from src.exception.custom_exception import CustomException
 from src.entity.config_entity import DataIngestionConfig
@@ -33,16 +35,14 @@ class DataIngestion:
                 
             logger.info(f"Loaded {len(docs)} document pages.")
             
-            # Split text into chunks
-            logger.info(f"Splitting text into chunks (size={self.config.chunk_size}, overlap={self.config.chunk_overlap})...")
+            # Split text into PARENT chunks (Large context blocks)
+            logger.info("Splitting text into large PARENT chunks for ParentDocumentRetrieval...")
             text_splitter = RecursiveCharacterTextSplitter(
-                chunk_size=self.config.chunk_size,
-                chunk_overlap=self.config.chunk_overlap,
-                separators=["\n\n", "\n", " ", ""]
+                chunk_size=2000,
+                chunk_overlap=200,
             )
-            
             chunks = text_splitter.split_documents(docs)
-            logger.info(f"Successfully split into {len(chunks)} chunks.")
+            logger.info(f"Successfully generated {len(chunks)} Parent chunks.")
             
             return chunks
             

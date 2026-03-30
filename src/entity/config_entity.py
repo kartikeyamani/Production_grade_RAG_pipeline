@@ -26,3 +26,14 @@ class RAGEngineConfig:
     flashrank_top_n: int
     groq_model: str
     llm_temperature: float
+
+@dataclass(frozen=True)
+class EvaluationConfig:
+    root_dir: Path
+    testset_path: Path
+    results_path: Path
+    testset_size: int
+    groq_model: str
+    llm_temperature: float
+    raw_chunks_path: Path
+    ollama_eval_model: str

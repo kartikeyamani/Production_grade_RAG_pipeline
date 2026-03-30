@@ -1,0 +1,73 @@
+user_input,reference,reference_context
+"Who authored the paper ""Generating sequences with recurrent neural networks""?",Alex Graves,"[5] Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Fethi Bougares, Holger Schwenk,
+and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical
+machine translation. CoRR, abs/1406.1078, 2014.
+[6] Francois Chollet. Xception: Deep learning with depthwise separable convolutions. arXiv
+preprint arXiv:1610.02357, 2016.
+[7] Junyoung Chung, Çaglar Gülçehre, Kyunghyun Cho, and Yoshua Bengio. Empirical evaluation
+of gated recurrent neural networks on sequence modeling. CoRR, abs/1412.3555, 2014.
+[8] Chris Dyer, Adhiguna Kuncoro, Miguel Ballesteros, and Noah A. Smith. Recurrent neural
+network grammars. In Proc. of NAACL, 2016.
+[9] Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin. Convolu-
+tional sequence to sequence learning. arXiv preprint arXiv:1705.03122v2, 2017.
+[10] Alex Graves. Generating sequences with recurrent neural networks. arXiv preprint
+arXiv:1308.0850, 2013."
+What was the F1 score achieved by Vinyals & Kaiser et al. (2014) on WSJ only using a discriminative training approach?,88.3,"Table 4: The Transformer generalizes well to English constituency parsing (Results are on Section 23
+of WSJ)
+Parser Training WSJ 23 F1
+Vinyals & Kaiser el al. (2014) [37] WSJ only, discriminative 88.3
+Petrov et al. (2006) [29] WSJ only, discriminative 90.4
+Zhu et al. (2013) [40] WSJ only, discriminative 90.4
+Dyer et al. (2016) [8] WSJ only, discriminative 91.7
+Transformer (4 layers) WSJ only, discriminative 91.3
+Zhu et al. (2013) [40] semi-supervised 91.3
+Huang & Harper (2009) [14] semi-supervised 91.3
+McClosky et al. (2006) [26] semi-supervised 92.1
+Vinyals & Kaiser el al. (2014) [37] semi-supervised 92.1
+Transformer (4 layers) semi-supervised 92.7
+Luong et al. (2015) [23] multi-task 93.0
+Dyer et al. (2016) [8] generative 93.3
+increased the maximum output length to input length + 300. We used a beam size of 21 and α = 0.3
+for both WSJ only and the semi-supervised setting.
+Our results in Table 4 show that despite the lack of task-specific tuning our model performs sur-"
+What was the BLEU score of the Transformer (base model) on the English-to-German test?,27.3,"Table 2: The Transformer achieves better BLEU scores than previous state-of-the-art models on the
+English-to-German and English-to-French newstest2014 tests at a fraction of the training cost.
+Model
+BLEU Training Cost (FLOPs)
+EN-DE EN-FR EN-DE EN-FR
+ByteNet [18] 23.75
+Deep-Att + PosUnk [39] 39.2 1.0 · 1020
+GNMT + RL [38] 24.6 39.92 2.3 · 1019 1.4 · 1020
+ConvS2S [9] 25.16 40.46 9.6 · 1018 1.5 · 1020
+MoE [32] 26.03 40.56 2.0 · 1019 1.2 · 1020
+Deep-Att + PosUnk Ensemble [39] 40.4 8.0 · 1020
+GNMT + RL Ensemble [38] 26.30 41.16 1.8 · 1020 1.1 · 1021
+ConvS2S Ensemble [9] 26.36 41.29 7.7 · 1019 1.2 · 1021
+Transformer (base model) 27.3 38.1 3.3 · 1018
+Transformer (big) 28.4 41.8 2.3 · 1019
+Residual Dropout We apply dropout [33] to the output of each sub-layer, before it is added to the
+sub-layer input and normalized. In addition, we apply dropout to the sums of the embeddings and the
+positional encodings in both the encoder and decoder stacks. For the base model, we use a rate of
+Pdrop = 0.1."
+How long did it take to train the Transformer model for state-of-the-art translation quality?,Twelve hours,"In this work we propose the Transformer, a model architecture eschewing recurrence and instead
+relying entirely on an attention mechanism to draw global dependencies between input and output.
+The Transformer allows for significantly more parallelization and can reach a new state of the art in
+translation quality after being trained for as little as twelve hours on eight P100 GPUs.
+2 Background
+The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU
+[16], ByteNet [18] and ConvS2S [9], all of which use convolutional neural networks as basic building
+block, computing hidden representations in parallel for all input and output positions. In these models,
+the number of operations required to relate signals from two arbitrary input or output positions grows
+in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes"
+"In ""encoder-decoder attention"" layers, where do the memory keys and values come from?",The output of the encoder.,"The Transformer uses multi-head attention in three different ways:
+• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,
+and the memory keys and values come from the output of the encoder. This allows every
+position in the decoder to attend over all positions in the input sequence. This mimics the
+typical encoder-decoder attention mechanisms in sequence-to-sequence models such as
+[38, 2, 9].
+• The encoder contains self-attention layers. In a self-attention layer all of the keys, values
+and queries come from the same place, in this case, the output of the previous layer in the
+encoder. Each position in the encoder can attend to all positions in the previous layer of the
+encoder.
+• Similarly, self-attention layers in the decoder allow each position in the decoder to attend to
+all positions in the decoder up to and including that position. We need to prevent leftward"

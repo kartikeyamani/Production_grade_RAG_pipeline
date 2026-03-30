@@ -24,4 +24,6 @@ class DataIngestionPipeline:
             else:
                 logger.warning("No chunks generated. Skipping vector store creation.")
         except Exception as e:
+            import sys
+            from src.exception.custom_exception import CustomException
             raise CustomException(e, sys)

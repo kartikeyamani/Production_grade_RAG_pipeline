@@ -13,3 +13,6 @@ python-box
 ragas
 datasets
 pandas
+rapidfuzz
+langchain-ollama
+langchain-experimental
