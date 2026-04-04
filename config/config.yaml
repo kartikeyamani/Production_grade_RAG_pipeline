@@ -1,18 +1,14 @@
 artifacts_root: artifacts
-
 data_ingestion:
   root_dir: artifacts/data_ingestion
   data_dir: data
-
 vector_store:
   root_dir: artifacts/vector_store
   db_dir: db
   raw_chunks_path: db/raw_chunks.pkl
-
 rag_engine:
   root_dir: artifacts/rag_engine
-
 evaluation:
   root_dir: artifacts/evaluation
-  testset_path: artifacts/evaluation/testset_parent.csv
-  results_path: artifacts/evaluation/results_parent.csv
+  testset_path: artifacts/evaluation/multipdfresults/testset_parent.csv
+  results_path: artifacts/evaluation/multipdfresults/results_2000.csv

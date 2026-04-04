@@ -1,0 +1,997 @@
+question,ground_truth,pipeline_answer,retrieved_contexts,answer_similarity,context_relevance,exact_match
+What does the Chain of Thought (CoT) technique relate to in the context of the passage?,The Chain of Thought (CoT) technique relates to prompting in large language models.,"The Chain of Thought (CoT) technique relates to the process of step-by-step reasoning in the context of handling complex tasks with Large Language Models (LLMs). It emphasizes the importance of constructing a workflow where each component or step contributes to the final outcome, allowing for more nuanced processing. The CoT technique facilitates this by providing a structured approach to reasoning, enabling the model to generate a sequence of logical steps that lead to a conclusion. This method is particularly useful in scenarios where manual reasoning is challenging and prone to errors, thus highlighting the role of automatic CoT in enhancing the reasoning capabilities of LLMs (source document).","components in a sequence to handle complex tasks with Large
+Language Models (LLMs). This approach involves creating a
+series of interconnected steps or processes, each contributing
+to the final outcome. The concept of Chains is based on
+the idea of constructing a workflow where different stages
+or components are sequentially arranged. Each component in
+a Chain performs a specific function, and the output of one
+serves as the input for the next. This end-to-end arrangement
+allows for more complex and nuanced processing, as each
+stage can be tailored to handle a specific aspect of the task.
+Chains can vary in complexity and structure, depending on
+the requirements. In “PromptChainer: Chaining Large Lan-
+guage Model Prompts through Visual Programming” [162],
+the authors not only describe the main challenges in designing
+chains, but also describe a visual tool to support those tasks.
+7) Rails: Rails in advanced prompt engineering refer to | translation quality after being trained for as little as twelve hours on eight P100 GPUs.
+2 Background
+The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU
+[16], ByteNet [18] and ConvS2S [9], all of which use convolutional neural networks as basic building
+block, computing hidden representations in parallel for all input and output positions. In these models,
+the number of operations required to relate signals from two arbitrary input or output positions grows
+in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes
+it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is
+reduced to a constant number of operations, albeit at the cost of reduced effective resolution due
+to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as
+described in section 3.2.
+Self-attention, sometimes called intra-attention is an attention mechanism relating different positions
+of a single sequence in order to compute a representation of the sequence. Self-attention has been
+used successfully in a variety of tasks including reading comprehension, abstractive summarization,
+textual entailment and learning task-independent sentence representations [4, 27, 28, 22].
+End-to-end memory networks are based on a recurrent attention mechanism instead of sequence-
+aligned recurrence and have been shown to perform well on simple-language question answering and
+language modeling tasks [34].
+To the best of our knowledge, however, the Transformer is the first transduction model relying
+entirely on self-attention to compute representations of its input and output without using sequence-
+aligned RNNs or convolution. In the following sections, we will describe the Transformer, motivate
+self-attention and discuss its advantages over models such as [17, 18] and [9].
+3 Model Architecture | such examples of step by step reasoning by hand is hard and
+error prone. That is where automatic CoT [157] comes into
+play.
+2) Tree of Thought (ToT): The Tree of Thought (ToT)
+[158] prompting technique is inspired by the concept of
+considering various alternative solutions or thought processes
+before converging on the most plausible one. ToT is based
+on the idea of branching out into multiple ”thought trees”
+where each branch represents a different line of reasoning.
+This method allows the LLM to explore various possibilities
+and hypotheses, much like human cognitive processes where
+multiple scenarios are considered before determining the most
+likely one.
+A critical aspect of ToT is the evaluation of these reasoning
+paths. As the LLM generates different branches of thought,
+each is assessed for its validity and relevance to the query.
+This process involves real-time analysis and comparison of
+the branches, leading to a selection of the most coherent and
+logical outcome.",0.8294,0.5644,0.0
+What toolkit was released by Mikolov that helped popularize NLMs?,RNNLM,"The toolkit released by Mikolov that helped popularize neural language models (NLMs) is called RNNLM, which is an open-source NLM toolkit. This toolkit significantly contributed to the widespread adoption and application of NLMs in various natural language processing tasks (source document).","Language modeling using neural networks was pioneered
+by [38], [39], [40]. Bengio et al. [13] developed one of the first
+neural language models (NLMs) that are comparable to n-gram
+models. Then, [14] successfully applied NLMs to machine
+translation. The release of RNNLM (an open source NLM
+toolkit) by Mikolov [41], [42] helped significantly popularize
+NLMs. Afterwards, NLMs based on recurrent neural networks
+(RNNs) and their variants, such as long short-term memory
+(LSTM) [19] and gated recurrent unit (GRU) [20], were widely
+used for many natural language applications including machine
+translation, text generation and text classification [43].
+Then, the invention of the Transformer architecture [44]
+marks another milestone in the development of NLMs. By
+applying self-attention to compute in parallel for every word
+in a sentence or document an “attention score” to model the
+influence each word has on another, Transformers allow for
+much more parallelization than RNNs, which makes it possible
+to efficiently pre-train very big language models on large
+amounts of data on GPUs. These pre-trained language models
+(PLMs) can be fine-tuned for many downstream tasks.
+We group early popular Transformer-based PLMs, based on
+their neural architectures, into three main categories: encoder-
+only, decoder-only, and encoder-decoder models. Comprehen-
+sive surveys of early PLMs are provided in [43], [28].
+1) Encoder-only PLMs: As the name suggests, the encoder-
+only models only consist of an encoder network. These models
+are originally developed for language understanding tasks,
+such as text classification, where the models need to predict a
+class label for an input text. Representative encoder-only mod-
+els include BERT and its variants, e.g., RoBERTa, ALBERT,
+DeBERTa, XLM, XLNet, UNILM, as to be described below.
+BERT (Birectional Encoder Representations from Trans-
+formers) [24] is one of the most widely used encoder-only
+language models. BERT consists of three modules: (1) an | Large Language Models: A Survey
+Shervin Minaee 1, Tomas Mikolov 2, Narjes Nikzad 3, Meysam Chenaghlu 4
+Richard Socher 5, Xavier Amatriain 6, Jianfeng Gao 7
+1 Applied Scientist, Amazon Inc
+2 Senior Researcher, CIIRC CTU
+3 Cologne University of Applied Sciences
+4 Staff Machine Learning Scientist, Ultimate.ai
+5 CEO, You.com
+6 VP of Product, AI and Compute Enablement, Google Inc
+7 VP of Deep Learning Group, Microsoft Research
+Abstract—Large Language Models (LLMs) have drawn a
+lot of attention due to their strong performance on a wide
+range of natural language tasks, since the release of ChatGPT
+in November 2022. LLMs’ ability of general-purpose language
+understanding and generation is acquired by training billions of
+model’s parameters on massive amounts of text data, as predicted
+by scaling laws [1], [2]. The research area of LLMs, while very
+recent, is evolving rapidly in many different ways. In this paper,
+we review some of the most prominent LLMs, including three
+popular LLM families (GPT, LLaMA, PaLM), and discuss their
+characteristics, contributions and limitations. We also give an
+overview of techniques developed to build, and augment LLMs.
+We then survey popular datasets prepared for LLM training,
+fine-tuning, and evaluation, review widely used LLM evaluation
+metrics, and compare the performance of several popular LLMs
+on a set of representative benchmarks. Finally, we conclude
+the paper by discussing open challenges and future research
+directions.
+I. I NTRODUCTION
+Language modeling is a long-standing research topic, dat-
+ing back to the 1950s with Shannon’s application of informa-
+tion theory to human language, where he measured how well
+simple n-gram language models predict or compress natural
+language text [3]. Since then, statistical language modeling
+became fundamental to many natural language understanding
+and generation tasks, ranging from speech recognition, ma-
+chine translation, to information retrieval [4], [5], [6]. | this, there is a current research trend to come up with Small
+Language Models (SLMs) as a cost-effective alternative to
+LLMs, particularly when used on specific tasks that might not
+require the full generality of larger models. Prominent works
+in this direction include Phi-1 [208], Phi-1.5 [209], and Phi-2
+from Microsoft.
+More generally, we should expect many research efforts in
+this area of how to train smaller and more efficient models.
+Techniques such as parameter-efficient fine-tuning (PEFT),
+teacher/student, and other forms of distillation – see section
+III-I – will continue to be used to build a smaller model out
+of larger ones.
+B. New Post-attention Architectural Paradigms
+Transformer blocks have been a crucial and constant part of
+most of current LLM frameworks, and it’s a big question mark
+how much longer this architecture will be in vogue, and what
+will be the next big architectural break-through in the field of
+deep learning (and NLP). Since AlexNet in 2012, we have seen
+many architectures go in and out of fashion, including LSTM,
+GRU, seq2seq, but Transformers have been the dominant
+approach since its inception. As described earlier, attention is
+the main mechanism driving transformers. More recently, there
+has been promising research in alternative approaches that are
+being labelled as post-attention.
+An important class of such class of post-attention models
+are the so called State Space Models (SSMs). While the notion
+of State Space Models has a long history in machine learning,
+it should be noted that in the context of language models, SSM
+is usually used in reference to the newer Structure State Space
+Model architecture or S4 for short (see Gu et al. [29]). Some
+recent models in this category are Mamba [30], Hyena [210],
+and Striped Hyena [211].
+While all of those models are very competitive in terms of
+performance in leaderboards and efficiency, they also address
+an important challenge in more traditional attention-based",0.629,0.4887,1.0
+What are some examples of prominent multi-modal LLMs mentioned in the passage?,"LLA VA, LLA VA-Plus, GPT-4, Qwen-vl, Next-GPT.","Some examples of prominent multi-modal large language models (MLLMs) mentioned in the passage include KOSMOS-1 and the Gemini family of models. KOSMOS-1 is noted for its capabilities in language understanding, generation, and perception-language tasks, while the Gemini family includes versions designed for various complexities and applications, such as Ultra, Pro, and Nano, which support tasks across image, audio, video, and text understanding (source document).","2) WordPieceEncoding: This algorithm is mainly used for
+very well-known models such as BERT and Electra. At the
+beginning of training, the algorithm takes all the alphabet from
+the training data to make sure that nothing will be left as UNK
+or unknown from the training dataset. This case happens when
+the model is given an input that can not be tokenized by the
+tokenizer. It mostly happens in cases where some characters are
+not tokenizable by it. Similar to BytePairEncoding, it tries to
+maximize the likelihood of putting all the tokens in vocabulary
+based on their frequency.
+3) SentencePieceEncoding: Although both tokenizers de-
+scribed before are strong and have many advantages compared
+to white-space tokenization, they still take assumption of
+words being always separated by white-space as granted. This
+assumption is not always true, in fact in some languages, words
+can be corrupted by many noisy elements such as unwanted
+spaces or even invented words. SentencePieceEncoding tries
+to address this issue.
+D. Positional Encoding
+1) Absolute Positional Embeddings : (APE) [44] has been
+used in the original Transformer model to preserve the infor-
+mation of sequence order. Therefore, the positional information
+of words is added to the input embeddings at the bottom of
+both the encoder and decoder stacks. There are various options
+for positional encodings, either learned or fixed. In the vanilla
+Transformer, sine and cosine functions are employed for this
+purpose. The main drawback of using APE in Transformers
+is the restriction to a certain number of tokens. Additionally,
+APE fails to account for the relative distances between tokens.
+2) Relative Positional Embeddings : (RPE) [126] involves
+extending self-attention to take into account the pairwise links
+between input elements. RPE is added to the model at two
+levels: first as an additional component to the keys, and
+subsequently as a sub-component of the values matrix. This | LLMs can be deployed as so-called AI agents: artificial entities
+that sense their environment, make decisions, and take actions.
+Previous research has focused on developing agents for specific
+tasks and domains. The emergent abilities demonstrated by
+LLMs make it possible to build general-purpose AI agents
+based on LLMs. While LLMs are trained to produce responses
+in static settings, AI agents need to take actions to interact with
+dynamic environment. Therefore, LLM-based agents often
+need to augment LLMs to e.g., obtain updated information
+from external knowledge bases, verify whether a system action
+produces the expected result, and cope with when things do
+not go as expected, etc. We will discuss in detail LLM-based
+agents in Section IV.
+In the rest of this paper, Section II presents an overview of
+state of the art of LLMs, focusing on three LLM families (GPT,
+LLaMA and PaLM) and other representative models. Section
+III discusses how LLMs are built. Section IV discusses how
+LLMs are used, and augmented for real-world applications
+Sections V and VI review popular datasets and benchmarks for
+evaluating LLMs, and summarize the reported LLM evaluation
+results. Finally, Section VII concludes the paper by summa-
+rizing the challenges and future research directions.
+II. L ARGE LANGUAGE MODELS
+In this section we start with a review of early pre-trained
+neural language models as they are the base of LLMs, and
+1Recently, several very promising non-transformer LLMs have been pro-
+posed, such as the LLMs based on structured state space models [29], [30].
+See Section VII for more details.
+then focus our discussion on three families of LLMs: GPT,
+LlaMA, and PaLM. Table I provides an overview of some of
+these models and their characteristics.
+A. Early Pre-trained Neural Language Models
+Language modeling using neural networks was pioneered
+by [38], [39], [40]. Bengio et al. [13] developed one of the first
+neural language models (NLMs) that are comparable to n-gram | a Multimodal Large Language Model (MLLM) that can per-
+ceive general modalities, learn in context (i.e., few-shot), and
+follow instructions (i.e. zero-shot). Specifically, they trained
+KOSMOS-1 from scratch on web-scale multi-modal corpora,
+including arbitrarily interleaved text and images, image-caption
+pairs, and text data. Experimental results show that KOSMOS-
+1 achieves impressive performance on (i) language understand-
+ing, generation, and even OCR-free NLP (directly fed with
+document images), (ii) perception-language tasks, including
+multimodal dialogue, image captioning, visual question an-
+swering, and (iii) vision tasks, such as image recognition with
+descriptions (specifying classification via text instructions).
+Gemini: In [99], Gemini team introduced a new family of
+multimodal models, that exhibit promising capabilities across
+image, audio, video, and text understanding. Gemini family
+includes three versions: Ultra for highly-complex tasks, Pro
+for enhanced performance and deployability at scale, and Nano
+for on-device applications. Gemini architecture is built on top
+of Transformer decoders, and is trained to support 32k context
+length (via using efficient attention mechanisms).
+Some of the other popular LLM frameworks (or techniques
+used for efficient developments of LLMs) includes Inner-
+Monologue [100], Megatron-Turing NLG [101], LongFormer
+[102], OPT-IML [103], MeTaLM [104], Dromedary [105],
+Palmyra [106], Camel [107], Yalm [108], MPT [109], ORCA-
+2 [110], Gorilla [67], PAL [111], Claude [112], CodeGen 2
+[113], Zephyr [114], Grok [115], Qwen [116], Mamba [30],
+Mixtral-8x7B [117], DocLLM [118], DeepSeek-Coder [119],
+FuseLLM-7B [120], TinyLlama-1.1B [121], LLaMA-Pro-8B
+[122].
+Fig 24 provides an overview of some of the most repre-
+sentative LLM frameworks, and the relevant works that have
+contributed to the success of LLMs and helped to push the
+limits of LLMs.
+III. H OW LLM S ARE BUILT
+In this section, we first review the popular architectures",0.3283,0.5856,0.0
+What does the passage suggest about the performance of using individual sentences compared to the original SEGMENT-PAIR input format?,Using individual sentences hurts performance on downstream tasks.,"The passage suggests that using individual sentences in the SENTENCE-PAIR format, compared to the original SEGMENT-PAIR input format, negatively impacts performance on downstream tasks. This decline in performance is hypothesized to be due to the model's inability to learn long-range dependencies effectively when trained on single sentences, as opposed to the more structured input provided by the SEGMENT-PAIR format (source document).","sampled near the end of a document may be
+shorter than 512 tokens, so we dynamically in-
+crease the batch size in these cases to achieve
+a similar number of total tokens as FULL -
+SENTENCES . We remove the NSP loss.
+Results Table
+2 shows results for the four dif-
+ferent settings. We ﬁrst compare the original
+SEGMENT -PAIR input format from Devlin et al.
+(2019) to the SENTENCE -PAIR format; both for-
+mats retain the NSP loss, but the latter uses sin-
+gle sentences. We ﬁnd that using individual
+sentences hurts performance on downstream
+tasks, which we hypothesize is because the model
+is not able to learn long-range dependencies.
+We next compare training without the NSP
+loss and training with blocks of text from a sin-
+gle document ( DOC -SENTENCES ). We ﬁnd that
+this setting outperforms the originally published
+BERTBASE results and that removing the NSP loss
+matches or slightly improves downstream task
+performance, in contrast to
+Devlin et al. (2019). | 1) BytePairEncoding: BytePairEncoding is originally a
+type of data compression algorithm that uses frequent patterns
+at byte level to compress the data. By definition, this algorithm
+mainly tries to keep the frequent words in their original form
+and break down ones that are not common. This simple
+paradigm keeps the vocabulary not very large, but also good
+enough to represent common words at the same time. Also
+morphological forms of the frequent words can be represented
+very well if suffix or prefix is also commonly presented in the
+training data of the algorithm. | translation quality after being trained for as little as twelve hours on eight P100 GPUs.
+2 Background
+The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU
+[16], ByteNet [18] and ConvS2S [9], all of which use convolutional neural networks as basic building
+block, computing hidden representations in parallel for all input and output positions. In these models,
+the number of operations required to relate signals from two arbitrary input or output positions grows
+in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes
+it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is
+reduced to a constant number of operations, albeit at the cost of reduced effective resolution due
+to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as
+described in section 3.2.
+Self-attention, sometimes called intra-attention is an attention mechanism relating different positions
+of a single sequence in order to compute a representation of the sequence. Self-attention has been
+used successfully in a variety of tasks including reading comprehension, abstractive summarization,
+textual entailment and learning task-independent sentence representations [4, 27, 28, 22].
+End-to-end memory networks are based on a recurrent attention mechanism instead of sequence-
+aligned recurrence and have been shown to perform well on simple-language question answering and
+language modeling tasks [34].
+To the best of our knowledge, however, the Transformer is the first transduction model relying
+entirely on self-attention to compute representations of its input and output without using sequence-
+aligned RNNs or convolution. In the following sections, we will describe the Transformer, motivate
+self-attention and discuss its advantages over models such as [17, 18] and [9].
+3 Model Architecture",0.6556,0.6174,0.0
+What is the total number of problems included in the GSM8K dataset?,8.5K problems,"The GSM8K dataset includes a total of 8,500 problems, which are divided into a training set containing 7,500 problems and a test set with 1,000 problems (source document).","Fig. 42: Datasets licensed under different licenses.
+This dataset is based on English tests completed by
+Chinese students from middle school and high school,
+aged 12 to 18, and it contains roughly 28, 000 texts
+and 100, 000 questions rigorously prepared by human
+specialists, primarily English instructors. This dataset
+contains a wide range of subjects that were purpose-
+fully chosen to assess students’ comprehension and
+reasoning abilities. This dataset is available in three
+subgroups: RACE-M, RACE-H, and RACE. RACE-
+M refers to the middle school examinations, whereas
+RACE-H denotes the high school tests. Finally, RACE
+is the synthesis of RACE-M and RACE-H.
+• SQuAD [187] stands for “Stanford Question Answer-
+ing Dataset” and is a crowdsourced reading compre-
+hension dataset based on Wikipedia articles. It has
+approximately 100, 000 question-answer pairs con-
+nected to more than 500 articles. The answers to
+these questions are typically text fragments or spans | Fig. 42: Datasets licensed under different licenses.
+This dataset is based on English tests completed by
+Chinese students from middle school and high school,
+aged 12 to 18, and it contains roughly 28, 000 texts
+and 100, 000 questions rigorously prepared by human
+specialists, primarily English instructors. This dataset
+contains a wide range of subjects that were purpose-
+fully chosen to assess students’ comprehension and
+reasoning abilities. This dataset is available in three
+subgroups: RACE-M, RACE-H, and RACE. RACE-
+M refers to the middle school examinations, whereas
+RACE-H denotes the high school tests. Finally, RACE
+is the synthesis of RACE-M and RACE-H.
+• SQuAD [187] stands for “Stanford Question Answer-
+ing Dataset” and is a crowdsourced reading compre-
+hension dataset based on Wikipedia articles. It has
+approximately 100, 000 question-answer pairs con-
+nected to more than 500 articles. The answers to
+these questions are typically text fragments or spans
+taken from the corresponding reading passages. The
+questions may be unanswerable in some cases. The
+dataset is divided into three sets: an 80% training set,
+a 10% development set, and a 10% hidden test set.
+• BoolQ [188] is a yes/no question-answering dataset
+where the goal is reading comprehension task. BoolQ
+includes 15, 942 examples. Each example is a triplet
+that includes a question, a relevant paragraph, and
+the solution. Although the main intuition behind
+this dataset is for reading comprehension, it can be
+used for reasoning, natural language inference, and
+question-answering tasks.
+• MultiRC [189] is another dataset that fits reading
+comprehension task. MultiRC contains brief para-
+graphs as well as multi-sentence questions that can
+be answered using the information in the paragraph.
+The paragraphs in this dataset come from a variety
+of sources, including news, fiction, historical texts,
+Wikipedia articles, discussions on society and law,
+elementary school science textbooks, and 9/11 re- | ployed to evaluate the emergent abilities of LLMs.
+• GSM8K [190] is designed to evaluate the model’s
+ability for multi-step mathematical reasoning. GSM8K
+includes 8.5K linguistically diverse grade school math
+word problems written by humans. The dataset is split
+into two sets: a training set with 7.5K problems,
+and a test set with 1K problems. These problems
+need 2 to 8 steps to be solved. Solutions mainly",0.515,0.5847,0.0
+"Who are the authors of the paper titled ""Rewoo: Decoupling reasoning from observations for efficient augmented language models""?","B. Xu, Z. Peng, B. Lei, S. Mukherjee, Y. Liu, and D. Xu","The authors of the paper titled ""Rewoo: Decoupling reasoning from observations for efficient augmented language models"" are Yujia Zhang, Yichao Lu, and J. Zico Kolter (source document).","decouple reasoning from direct observations. ReWOO operates
+by enabling LLMs to formulate comprehensive reasoning plans
+or meta-plans without immediate reliance on external data
+or tools. This approach allows the agent to create a struc-
+tured framework for reasoning that can be executed once the
+necessary data or observations are available. In ReWOO, the
+LLM initially develops a plan (a series of steps) that outlines
+how to approach and solve a given problem. This meta-
+planning phase is crucial as it sets the stage for the agent to
+process information once it becomes available. The execution
+phase then involves integrating actual data or observations into
+the pre-specified plan, leading to coherent and contextually
+relevant responses. ReWOO offers significant advantages in
+terms of token efficiency and robustness to tool failure. It
+enables LLMs to handle tasks where immediate access to
+external data is not available, relying instead on a well- | LLM initially develops a plan (a series of steps) that outlines
+how to approach and solve a given problem. This meta-
+planning phase is crucial as it sets the stage for the agent to
+process information once it becomes available. The execution
+phase then involves integrating actual data or observations into
+the pre-specified plan, leading to coherent and contextually
+relevant responses. ReWOO offers significant advantages in
+terms of token efficiency and robustness to tool failure. It
+enables LLMs to handle tasks where immediate access to
+external data is not available, relying instead on a well-
+structured reasoning framework. This method is particularly
+advantageous in scenarios where data retrieval is costly, slow,
+or uncertain, allowing the LLM-based agent to maintain a high
+level of performance and reliability.
+Reason and Act (ReAct)[176] prompts LLMs to generate
+not only verbal reasoning but also actionable steps, thus
+enhancing the model’s dynamic problem-solving capabilities.
+ReAct is grounded in the principle of integrating reasoning
+with action. In this approach, the LLM is prompted to alternate
+between generating reasoning traces (explanations) and taking
+actions (steps or commands) in an interleaved manner. This
+approach allows the model to dynamically reason about a prob-
+lem, and propose and take concrete actions simultaneously.
+Dialog-Enabled Resolving Agents (DERA) [177] are spe-
+cialized AI agents that can engage in dialogue, resolve queries,
+and make decisions based on interactive exchanges. DERA
+is developed based on the idea of utilizing multiple agents
+within a dialog context, each with specific roles and functions.
+These agents can include Researchers, who gather and analyze
+information, and Deciders, who make final judgments based
+on the information provided. This division of roles allows for
+a well-organized and efficient approach to problem-solving
+and decision-making. DERA is particularly advantageous in | became fundamental to many natural language understanding
+and generation tasks, ranging from speech recognition, ma-
+chine translation, to information retrieval [4], [5], [6].
+The recent advances on transformer-based large language
+models (LMs), pretrained on Web-scale text corpora, signifi-
+cantly extended the capabilities of language models (LLMs).
+For example, OpenAI’s ChatGPT and GPT-4 can be used not
+only for natural language processing, but also as general task
+solvers to power Microsoft’s Co-Pilot systems, for instance,
+can follow human instructions of complex new tasks per-
+forming multi-step reasoning when needed. LLMs are thus
+becoming the basic building block for the development of
+general-purpose AI agents or artificial general intelligence
+(AGI).
+As the field of LLMs is moving fast, with new findings,
+models and techniques being published in a matter of months
+or weeks [7], [8], [9], [10], [11], AI researchers and practi-
+tioners often find it challenging to figure out the best recipes
+to build LLM-powered AI systems for their tasks. This paper
+gives a timely survey of the recent advances on LLMs. We
+hope this survey will prove a valuable and accessible resource
+for students, researchers and developers.
+LLMs are large-scale, pre-trained, statistical language mod-
+els based on neural networks. The recent success of LLMs is
+an accumulation of decades of research and development of
+language models, which can be categorized into four waves
+that have different starting points and velocity: statistical lan-
+guage models, neural language models, pre-trained language
+models and LLMs.
+Statistical language models (SLMs) view text as a sequence
+of words, and estimate the probability of text as the product
+of their word probabilities. The dominating form of SLMs
+are Markov chain models known as the n-gram models,
+which compute the probability of a word conditioned on its
+immediate proceeding n − 1 words. Since word probabilities",0.2746,0.5755,0.0
+What is a challenge faced by attention-based models when dealing with longer contexts?,Attention-based models are highly inefficient for longer contexts.,"A challenge faced by attention-based models when dealing with longer contexts is inefficiency in processing and remembering all the information. As the context length increases, it becomes more difficult for the model to effectively manage and utilize the extensive amount of information available, which can hinder its performance. This inefficiency is particularly pronounced because attention mechanisms may struggle to maintain coherence and relevance across very long contexts, leading to potential degradation in the quality of the model's responses (source document).","because it may allow the model to extrapolate to sequence lengths longer than the ones encountered
+during training.
+4 Why Self-Attention
+In this section we compare various aspects of self-attention layers to the recurrent and convolu-
+tional layers commonly used for mapping one variable-length sequence of symbol representations
+(x1, ..., xn) to another sequence of equal length (z1, ..., zn), with xi, zi ∈ Rd, such as a hidden
+layer in a typical sequence transduction encoder or decoder. Motivating our use of self-attention we
+consider three desiderata.
+One is the total computational complexity per layer. Another is the amount of computation that can
+be parallelized, as measured by the minimum number of sequential operations required.
+The third is the path length between long-range dependencies in the network. Learning long-range
+dependencies is a key challenge in many sequence transduction tasks. One key factor affecting the
+ability to learn such dependencies is the length of the paths forward and backward signals have to
+traverse in the network. The shorter these paths between any combination of positions in the input
+and output sequences, the easier it is to learn long-range dependencies [12]. Hence we also compare
+the maximum path length between any two input and output positions in networks composed of the
+different layer types.
+As noted in Table 1, a self-attention layer connects all positions with a constant number of sequentially
+executed operations, whereas a recurrent layer requires O(n) sequential operations. In terms of
+computational complexity, self-attention layers are faster than recurrent layers when the sequence
+6 | translation quality after being trained for as little as twelve hours on eight P100 GPUs.
+2 Background
+The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU
+[16], ByteNet [18] and ConvS2S [9], all of which use convolutional neural networks as basic building
+block, computing hidden representations in parallel for all input and output positions. In these models,
+the number of operations required to relate signals from two arbitrary input or output positions grows
+in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes
+it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is
+reduced to a constant number of operations, albeit at the cost of reduced effective resolution due
+to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as
+described in section 3.2.
+Self-attention, sometimes called intra-attention is an attention mechanism relating different positions
+of a single sequence in order to compute a representation of the sequence. Self-attention has been
+used successfully in a variety of tasks including reading comprehension, abstractive summarization,
+textual entailment and learning task-independent sentence representations [4, 27, 28, 22].
+End-to-end memory networks are based on a recurrent attention mechanism instead of sequence-
+aligned recurrence and have been shown to perform well on simple-language question answering and
+language modeling tasks [34].
+To the best of our knowledge, however, the Transformer is the first transduction model relying
+entirely on self-attention to compute representations of its input and output without using sequence-
+aligned RNNs or convolution. In the following sections, we will describe the Transformer, motivate
+self-attention and discuss its advantages over models such as [17, 18] and [9].
+3 Model Architecture | For example, the response to ”Recommend some good movies
+for me” requires a lot of context about ”me” as well as what
+movies are available and which ones I have not watched.
+Context length is especially important for RAG, where large
+portions of text might be retrieved and injected into the prompt
+for generation (see section IV-C.
+The longer the context length, the more tokens we can
+squeeze into the context. The more information the model has
+access to, the better its response will be. But on the other
+hand, with very long context, it would be hard for the model
+to remember everything and efficiently process all the informa-
+tion. Attention-based models are highly inefficient for longer
+contexts and that is why we should expect more research in
+different mechanisms that enable processing longer contexts
+and generally come up with more efficient architectures.
+That being said, new architectures might not only propose
+alternatives for the attention mechanism but rather rethink the",0.7904,0.6933,0.0
+What can potentially lead to overfitting in models?,Learning from the same examples multiple times.,"Overfitting in models can potentially be led by the presence of duplicate data points in the training dataset. When a model learns from the same examples multiple times due to duplicates, it may become biased and overly specialized to those particular instances, reducing its ability to generalize to new, unseen data. This lack of diversity in the training data can inflate the importance of certain patterns or characteristics, further exacerbating the risk of overfitting (source document).","same data in a dataset. Duplicate data points can introduce
+biases in the model training process and reduce the diversity, as
+the model may learn from the same examples multiple times,
+potentially leading to overfitting on those particular instances.
+Some works [125] have shown that de-duplication improves
+models’ ability to generalize to new, unseen data.
+The de-duplication process is particularly important when
+dealing with large datasets, as duplicates can unintentionally
+inflate the importance of certain patterns or characteristics.
+This is especially relevant in NLP tasks, where diverse and
+representative training data is crucial for building robust lan-
+guage models.
+The specific de-duplication method can vary based on
+the nature of the data and the requirements of the particular
+language model being trained. It may involve comparing entire
+data points or specific features to identify and eliminate du-
+plicates. At the document level, existing works mainly rely on
+the overlap ratio of high-level features (e.g. n-grams overlap)
+between documents to detect duplicate samples.
+C. Tokenizations
+Tokenization referes to the process of converting a se-
+quence of text into smaller parts, known as tokens. While
+the simplest tokenization tool simply chops text into tokens
+based on white space, most tokenization tools rely on a word
+dictionary. However, out-of-vocabulary (OOV) is a problem
+in this case because the tokenizer only knows words in its
+dictionary. To increase the coverage of dictionaries, popular
+tokenizers used for LLMs are based on sub-words, which can
+be combined to form a large number of words, including the
+words unseen in training data or words in different languages.
+In what follows, we describe three popular tokenizers.
+1) BytePairEncoding: BytePairEncoding is originally a
+type of data compression algorithm that uses frequent patterns
+at byte level to compress the data. By definition, this algorithm | 2) WordPieceEncoding: This algorithm is mainly used for
+very well-known models such as BERT and Electra. At the
+beginning of training, the algorithm takes all the alphabet from
+the training data to make sure that nothing will be left as UNK
+or unknown from the training dataset. This case happens when
+the model is given an input that can not be tokenized by the
+tokenizer. It mostly happens in cases where some characters are
+not tokenizable by it. Similar to BytePairEncoding, it tries to
+maximize the likelihood of putting all the tokens in vocabulary
+based on their frequency.
+3) SentencePieceEncoding: Although both tokenizers de-
+scribed before are strong and have many advantages compared
+to white-space tokenization, they still take assumption of
+words being always separated by white-space as granted. This
+assumption is not always true, in fact in some languages, words
+can be corrupted by many noisy elements such as unwanted
+spaces or even invented words. SentencePieceEncoding tries
+to address this issue.
+D. Positional Encoding
+1) Absolute Positional Embeddings : (APE) [44] has been
+used in the original Transformer model to preserve the infor-
+mation of sequence order. Therefore, the positional information
+of words is added to the input embeddings at the bottom of
+both the encoder and decoder stacks. There are various options
+for positional encodings, either learned or fixed. In the vanilla
+Transformer, sine and cosine functions are employed for this
+purpose. The main drawback of using APE in Transformers
+is the restriction to a certain number of tokens. Additionally,
+APE fails to account for the relative distances between tokens.
+2) Relative Positional Embeddings : (RPE) [126] involves
+extending self-attention to take into account the pairwise links
+between input elements. RPE is added to the model at two
+levels: first as an additional component to the keys, and
+subsequently as a sub-component of the values matrix. This | during training. This can help the model to provide more
+definite and reliable answers.
+2) Deduplication: De-duplication refers to the process of
+removing duplicate instances or repeated occurrences of the
+same data in a dataset. Duplicate data points can introduce
+biases in the model training process and reduce the diversity, as
+the model may learn from the same examples multiple times,
+potentially leading to overfitting on those particular instances.
+Some works [125] have shown that de-duplication improves
+models’ ability to generalize to new, unseen data.
+The de-duplication process is particularly important when
+dealing with large datasets, as duplicates can unintentionally
+inflate the importance of certain patterns or characteristics.
+This is especially relevant in NLP tasks, where diverse and
+representative training data is crucial for building robust lan-
+guage models.
+The specific de-duplication method can vary based on",0.4949,0.4652,0.0
+"Who are the authors of the paper titled ""Building a large annotated corpus of english: The penn treebank""?","Mitchell P Marcus, Mary Ann Marcinkiewicz, and Beatrice Santorini.","The authors of the paper titled ""Building a large annotated corpus of English: The Penn Treebank"" are Mitchell P. Marcus, Beatrice Santorini, and Mary Ann Marcinkiewicz (source document).","Penn Treebank [25], about 40K training sentences. We also trained it in a semi-supervised setting,
+using the larger high-confidence and BerkleyParser corpora from with approximately 17M sentences
+[37]. We used a vocabulary of 16K tokens for the WSJ only setting and a vocabulary of 32K tokens
+for the semi-supervised setting.
+We performed only a small number of experiments to select the dropout, both attention and residual
+(section 5.4), learning rates and beam size on the Section 22 development set, all other parameters
+remained unchanged from the English-to-German base translation model. During inference, we
+9 | the responses of experts in various fields. This method involves
+prompting the LLMs to assume the role of an expert and re-
+spond accordingly, providing high-quality, informed answers.
+A key strategy within Expert Prompting is the multi-expert
+approach. The LLM is prompted to consider responses from
+multiple expert perspectives, which are then synthesized to
+form a comprehensive and well-rounded answer. This tech-
+nique not only enhances the depth of the response but also
+incorporates a range of viewpoints, reflecting a more holistic
+understanding of the subject matter.
+6) Chains: Chains refer to the method of linking multiple
+components in a sequence to handle complex tasks with Large
+Language Models (LLMs). This approach involves creating a
+series of interconnected steps or processes, each contributing
+to the final outcome. The concept of Chains is based on
+the idea of constructing a workflow where different stages
+or components are sequentially arranged. Each component in
+a Chain performs a specific function, and the output of one
+serves as the input for the next. This end-to-end arrangement
+allows for more complex and nuanced processing, as each
+stage can be tailored to handle a specific aspect of the task.
+Chains can vary in complexity and structure, depending on
+the requirements. In “PromptChainer: Chaining Large Lan-
+guage Model Prompts through Visual Programming” [162],
+the authors not only describe the main challenges in designing
+chains, but also describe a visual tool to support those tasks.
+7) Rails: Rails in advanced prompt engineering refer to
+a method of guiding and controlling the output of Large
+Language Models (LLMs) through predefined rules or tem-
+plates. This approach is designed to ensure that the model’s
+responses adhere to certain standards or criteria, enhancing the
+relevance, safety, and accuracy of the output. The concept of
+Rails involves setting up a framework or a set of guidelines | remains a vital piece. It typically involves two methodologies:
+1) Scoring: Human evaluators rate the level of halluci-
+nation within a predefined scale.
+2) Comparative Analysis : Evaluators compare gener-
+ated content against baseline or ground-truth refer-
+ences, adding an essential layer of subjective assess-
+ment.
+FactScore [155] is a recent example of a metric that can be
+used both for human and model-based evaluation. The metric
+breaks an LLM generation into “atomic facts”. The final score
+is computed as the sum of the accuracy of each atomic fact,
+giving each of them equal weight. Accuracy is a binary number
+that simply states whether the atomic fact is supported by the
+source. The authors implement different automation strategies
+that use LLMs to estimate this metric.
+Finally, mitigating hallucinations in LLMs is a multifaceted
+challenge, requiring tailored strategies to suit various applica-
+tions. Those include:
+• Product Design and User Interaction Strategies such
+as use case design, structuring the input/output, or
+providing mechanisms for user feedback.
+• Data Management and Continuous Improvement.
+Maintaining and analyzing a tracking set of hallucina-
+tions is essential for ongoing model improvement.",0.5164,0.5422,0.0
+What is the relationship between the slowdown of ZO-SGD and the effective rank r?,"The slowdown of ZO-SGD is proportional to the effective rank r, not the parameter dimension.","The relationship between the slowdown of ZO-SGD (Zero-Order Stochastic Gradient Descent) and the effective rank \( r \) is that the slowdown is inversely related to the effective rank of the Hessian of the loss function. Specifically, as the effective rank \( r \) decreases, the slowdown of ZO-SGD increases. This means that when the effective rank is low, indicating that the Hessian has a small number of significant eigenvalues, the optimization process becomes slower. This is because the optimization dynamics are heavily influenced by the directions associated with these significant eigenvalues, leading to less effective exploration of the parameter space and, consequently, slower convergence (source document).","optimization step. It highlights that when the gradient covariance is large, the maximum possible
+decrease in loss at each optimization step is small, thereby resulting in slower optimization.
+Lemma 1 (Descent Lemma). Let L(θ) be ℓ-smooth.7 For any unbiased gradient estimate g(θ, B),
+E[L(θt+1) | θt] − L(θt) ≤ −η ∥∇L(θt)∥2 + 1
+2 η2ℓ · E[∥g(θ, Bt)∥2]. (2)
+The descent lemma highlights the importance of the gradient norm, which we derive for MeZO below.
+Lemma 2. Let B be a random minibatch of size B. Then, the gradient norm of MeZO is
+Ex
+b∇L(θ; B)
+
+2
+= d + n − 1
+n E
+h
+∥∇L(θ; B)∥2
+i
+.
+where n is the number of z sampled in n-SPSA (Definition 1) and d is the number of parameters.
+Thus, in the usual case where n ≪ d, MeZO has a much larger gradient norm than SGD. 8 The
+descent lemma also shows that to guarantee loss decrease, one needs to choose the learning rate as
+η ≤ 2 ∥∇L(θt)∥2
+ℓ · E[∥g(θ, B)∥2]
+Lemma 2= = = = = = =⇒ ηZO = n
+d + n − 1 ηSGD (3)
+where ηZO and ηSGD are the maximum permissible learning rates for MeZO and SGD respectively.
+Thus we see that without any further assumptions, MeZO can slow optimization by decreasing the
+largest permissible learning rate by a factor of d. Moreover, MeZO reduces the loss decrease that can
+be obtained at each step and, as a consequence, slows convergence by a factor of d as well.
+Surprisingly, our experiments show that MeZO can quickly optimize pre-trained models with billions
+of parameters, and reducing the number of tuned parameters via PEFT techniques does not substan-
+tially accelerate optimization (Appendix F.3). We attribute these phenomena to the Hessian of the loss
+exhibiting small local effective rank. It is prohibitively expensive to directly measure the effective
+rank of the Hessian of a large LM on a reasonably sized dataset. However, many previous works
+have shown that the Hessian of the loss for deep neural networks trained by SGD has remarkably low | 4 Theory
+Our theoretical analysis highlights why MeZO can optimize large LMs, although a number of classical
+results [69, 47, 79, 3, 70] suggest that optimization should be catastrophically slow when training so
+many parameters. The inclusion of a simple prompt is crucial for MeZO to succeed (Appendix A).
+Past works [83, 67] have suggested that including such a prompt ensures that the fine-tuning objective
+is closely related to the pre-training one. As such, here, we make the assumption that the model has
+already been trained for many steps on the fine-tuning objective, which implies that the loss landscape
+exhibits favorable conditions (Assumption 1). Then, we derive a convergence rate independent of
+the number of parameters. We show that the loss decreases per step at a rate independent of the
+parameter dimension d (Theorem 1), and that, under stronger conditions, the algorithm converges in
+time independent of d (Lemma 3). Together, these results imply that MeZO is not catastrophically
+slower than SGD when fine-tuning.6 For ease of illustration, we assume that z is sampled from a
+sphere with radius
+√
+d, and in Appendix G.2, we derive the rate for a general Gaussian z, which was
+used in the experiments.
+We follow classical analyses of SGD and replace the minibatch gradient estimate with SPSA (Defi-
+nition 1). Consider the minibatch SGD update θt+1 ← θt − η∇L(θ; Bt) where Bt is a minibatch
+drawn uniformly from DB. Crucially, the SGD minibatch gradient estimate is unbiased.
+Definition 3 (Unbiased Gradient Estimate). Any minibatch gradient estimate g(θ, B) is said to be
+unbiased if E[g(θ, B)] = ∇L(θ).
+4.1 Per-step analysis
+The classical descent lemma uses a Taylor expansion to study how SGD reduces the loss at each
+optimization step. It highlights that when the gradient covariance is large, the maximum possible
+decrease in loss at each optimization step is small, thereby resulting in slower optimization. | construct the problem and articulate each stage of
+reasoning.
+2) Manual CoT: A more complex variant, it requires
+providing step-by-step reasoning examples as tem-
+plates for the model. While yielding more effective
+results, it poses challenges in scalability and mainte-
+nance.
+Manual CoT is more effective than zero-shot. However,
+the effectiveness of this example-based CoT depends on the
+choice of diverse examples, and constructing prompts with
+such examples of step by step reasoning by hand is hard and
+error prone. That is where automatic CoT [157] comes into
+play.
+2) Tree of Thought (ToT): The Tree of Thought (ToT)
+[158] prompting technique is inspired by the concept of
+considering various alternative solutions or thought processes
+before converging on the most plausible one. ToT is based
+on the idea of branching out into multiple ”thought trees”
+where each branch represents a different line of reasoning.
+This method allows the LLM to explore various possibilities
+and hypotheses, much like human cognitive processes where
+multiple scenarios are considered before determining the most
+likely one.
+A critical aspect of ToT is the evaluation of these reasoning
+paths. As the LLM generates different branches of thought,
+each is assessed for its validity and relevance to the query.
+This process involves real-time analysis and comparison of
+the branches, leading to a selection of the most coherent and
+logical outcome.
+ToT is particularly useful in complex problem-solving
+scenarios where a single line of reasoning might not suffice.
+It allows LLMs to mimic a more human-like problem-solving
+approach, considering a range of possibilities before arriving
+at a conclusion. This technique enhances the model’s ability
+to handle ambiguity, complexity, and nuanced tasks, making it
+a valuable tool in advanced AI applications.
+3) Self-Consistency: Self-Consistency [159] utilizes an
+ensemble-based method, where the LLM is prompted to gen-",0.8178,0.5398,0.0
+What is the title of the work by Mingkai Deng and others published in 2022?,RLPrompt: Optimizing discrete text prompts with reinforcement learning.,"The title of the work by Mingkai Deng and others published in 2022 is ""Scaling Up Vision-Language Pretraining for Image-Text Matching"" (source document).","facilitating users to search and navigate the web. Specifically,
+Fig. 5: Cross-lingual language model pretraining. The MLM
+objective is similar to BERT, but with continuous streams
+of text as opposed to sentence pairs. The TLM objective
+extends MLM to pairs of parallel sentences. To predict a
+masked English word, the model can attend to both the English
+sentence and its French translation, and is encouraged to align
+English and French representations. Courtesy of [47].
+Fig. 6: Overview of unified LM pre-training. The model
+parameters are shared across the LM objectives (i.e., bidirec-
+tional LM, unidirectional LM, and sequence-to-sequence LM).
+Courtesy of [49].
+WebGPT is trained in three steps. The first is for WebGPT
+to learn to mimic human browsing behaviors using human
+demonstration data. Then, a reward function is learned to
+predict human preferences. Finally, WebGPT is refined to
+optimize the reward function via reinforcement learning and
+rejection sampling.
+To enable LLMs to follow expected human instructions,
+InstructGPT [59] is proposed to align language models with
+user intent on a wide range of tasks by fine-tuning with
+human feedback. Starting with a set of labeler-written prompts
+and prompts submitted through the OpenAI API, a dataset
+of labeler demonstrations of the desired model behavior is
+collected. Then GPT-3 is fine-tuned on this dataset. Then, a
+dataset of human-ranked model outputs is collected to further
+fine-tune the model using reinforcement learning. The method
+is known Reinforcement Learning from Human Feedback
+(RLHF), as shown in 10. The resultant InstructGPT models
+have shown improvements in truthfulness and reductions in
+toxic output generation while having minimal performance | training. Thus, each training sequence was seen
+with the same mask four times during training.
+We compare this strategy with dynamic mask-
+ing where we generate the masking pattern every
+time we feed a sequence to the model. This be-
+comes crucial when pretraining for more steps or
+with larger datasets.
+7Studying architectural changes, including larger archi-
+tectures, is an important area for future work.
+Masking SQuAD 2.0 MNLI-m SST-2
+reference 76.3 84.3 92.8
+Our reimplementation:
+static 78.3 84.3 92.5
+dynamic 78.7 84.0 92.9
+Table 1: Comparison between static and dynamic
+masking for BERT BASE . We report F1 for SQuAD and
+accuracy for MNLI-m and SST-2. Reported results are
+medians over 5 random initializations (seeds). Refer-
+ence results are from
+Y ang et al.(2019).
+Results Table 1 compares the published
+BERTBASE results from Devlin et al. (2019) to our
+reimplementation with either static or dynamic
+masking. We ﬁnd that our reimplementation
+with static masking performs similar to the
+original BERT model, and dynamic masking is
+comparable or slightly better than static masking.
+Given these results and the additional efﬁciency
+beneﬁts of dynamic masking, we use dynamic
+masking in the remainder of the experiments.
+4.2 Model Input Format and Next Sentence
+Prediction
+In the original BERT pretraining procedure, the
+model observes two concatenated document seg-
+ments, which are either sampled contiguously
+from the same document (with p = 0 . 5) or from
+distinct documents. In addition to the masked lan-
+guage modeling objective, the model is trained to
+predict whether the observed document segments
+come from the same or distinct documents via an
+auxiliary Next Sentence Prediction (NSP) loss.
+The NSP loss was hypothesized to be an impor-
+tant factor in training the original BERT model.
+Devlin et al. (2019) observe that removing NSP
+hurts performance, with signiﬁcant performance
+degradation on QNLI, MNLI, and SQuAD 1.1.
+However, some recent work has questioned the | are usually foundation models that have been fine-tuned on
+specific datasets or even different approaches. Availability of
+the model weights regardless of the license is another category
+in our classification. Models that have their weights publicly
+available (even through request) are noted as Public models
+while others are noted as Private. Table III shows all of these
+definitions and abbreviations used in the rest of the article.
+Figure 43 illustrate these visually.
+According to the provided categorizations, we can catego-
+rize and label each notable LLM as shown in table IV. As can
+be seen from this table, models categorized as very large are
+also unavailable as well.
+B. LLMs’ Performance on Different Tasks
+Commonsense reasoning is one of the important capabili-
+ties each model can obtain. This capability denotes the ability
+of the model to use prior knowledge in combination with
+reasoning skills. In the case of HellaSwag for example, finding
+the continuation of text is challenging because the given text
+contains a partial part of the story while the given choices
+as continuation are tricky to select, and without having prior
+knowledge about the world it is not possible. This specific kind
+of reasoning deserves high attention because it is related to
+utilizing previous knowledge with open text-described scenes
+or facts. As can be seen from table V not just Unavailable
+models but also Public ones can achieve good results on
+various tests.
+TABLE V: Commonsense reasoning comparison.
+Model OBQA HellaSwag
+Davinci-003 51 83.4
+Falcon 7B 44.4 76.3
+Alpaca 43.4 73.9
+Pythia 7B 37.2 64
+Pythia 12B 43.2 68.1
+LLAMA 7B 42.4 73
+Dolly 6B 41.2 67.6
+Dolly 12B 40.4 71
+Alpaca 7B 43.4 73.9
+Alpaca Lora 7B 42.6 74
+GPT-J 6.7B 38.2 66.2
+LLama 7B 42.4 73
+LLama 13B 42.2 76.2
+Pythia 6.7B 37.2 64
+Pythia 12B 38 67.3
+StableLM Tuned 33.4 53.6
+Koala 13B 42.8 72.6
+Mosaic mpt-7B 42.6 76.3
+LLAMA 2 70B - 87.33
+LLAMA 65B - 86.09
+Falcon 40B - 85.3
+Falcon 180B - 88.86
+MPT Instruct 30B - 84.31",0.2765,0.2525,0.0
+How many warmup steps are used in the training?,4000.,"The training uses 10,000 warmup steps (source document).","In this section, we measure the wallclock time efficiency of MeZO compared to full-parameter FT,
+with respect to different model sizes. We conduct our experiments with 80GB A100s connected by
+NVLink and InfiniteBand, which are state-of-the-art solutions for distributed training. As shown in
+Table 23, on the MultiRC datasets, training with MeZO brings 7.74× speedup per step compared to
+full-parameter FT on a 30B model. This is due to (1) MeZO does not require costly backpropagation
+and (2) MeZO requires fewer GPUs and reduces the multi-GPU communication overhead. We can
+see that MeZO has a bigger advantage when training larger models—the multi-GPU overhead for
+fine-tuning is larger.
+Note that even though MeZO has better per-step wallclock efficiency, it requires significantly more
+steps than standard FT. Taking our OPT-30B experiments as an example: MeZO takes 32× more
+steps than standard FT, while FT takes 8× more GPUs and 7.74× more time per step. Overall, MeZO | NVLink and InfiniteBand, which are state-of-the-art solutions for distributed training. As shown in
+Table 23, on the MultiRC datasets, training with MeZO brings 7.74× speedup per step compared to
+full-parameter FT on a 30B model. This is due to (1) MeZO does not require costly backpropagation
+and (2) MeZO requires fewer GPUs and reduces the multi-GPU communication overhead. We can
+see that MeZO has a bigger advantage when training larger models—the multi-GPU overhead for
+fine-tuning is larger.
+Note that even though MeZO has better per-step wallclock efficiency, it requires significantly more
+steps than standard FT. Taking our OPT-30B experiments as an example: MeZO takes 32× more
+steps than standard FT, while FT takes 8× more GPUs and 7.74× more time per step. Overall, MeZO
+requires only half as many GPU-hours as FT for a 30B model.
+30 | contributed to the success of LLMs and helped to push the
+limits of LLMs.
+III. H OW LLM S ARE BUILT
+In this section, we first review the popular architectures
+used for LLMs, and then discuss data and modeling techniques
+ranging from data preparation, tokenization, to pre-training,
+instruction tuning, and alignment.
+Once the model architecture is chosen, the major steps
+involved in training an LLM includes: data preparation (col-
+lection, cleaning, deduping, etc.), tokenization, model pre-
+training (in a self-supervised learning fashion), instruction
+tuning, and alignment. We will explain each of them in a
+separate subsection below. These steps are also illustrated in
+Fig 25.
+A. Dominant LLM Architectures
+The most widely used LLM architectures are encoder-only,
+decoder-only, and encoder-decoder. Most of them are based on
+Transformer (as the building block). Therefore we also review
+the Transformer architecture here.
+1) Transformer: in a ground-breaking work [44], Vaswani
+et al. proposed the Transformer framework, which was orig-
+inally designed for effective parallel computing using GPUs.
+The heart of Transformer is the (self-)attention mechanism,
+which can capture long-term contextual information much
+more effectively using GPUs than the recurrence and convo-
+lution mechanisms. Fig 26 provides a high-level overview of
+transformer work. In this section we provide an overview of the
+main elements and variants, see [44], [123] for more details.
+The Transformer language model architecture, originally
+proposed for machine translation, consists of an encoder and
+a decoder. The encoder is composed of a stack of N = 6
+identical Transformer layers. Each layer has two sub-layers.
+The first one is a multi-head self-attention layer, and the other
+one is a simple position-wise fully connected feed-forward
+network. The decoder is composed of a stack of 6 identical
+layers. In addition to the two sub-layers in each encoder layer,",0.364,0.3474,0.0
+How many tasks did MeZO achieve comparable or better performance on?,7 out of the 11 tasks.,MeZO achieved comparable or better performance on 7 out of the 11 tasks evaluated (source document).,"With enough data, MeZO achieves comparable performance (up to 5% gap) to FT. MeZO
+achieves close-to-fine-tuning performance on k = 16, with some tasks only having 2% gaps. When
+using k = 512 data, the gap between MeZO and FT further reduced to within 5% across all tasks.
+MeZO works well on both full-parameter tuning and PEFT. Full-parameter tuning (MeZO) and
+PEFT (MeZO with LoRA and prefix-tuning) achieve comparable performance, while MeZO (prefix)
+4BBTv2 can only train low-dimensional projected prefixes instead of the full model.
+5 | as suggested for fine-tuning [53], can sometimes improve the performance.
+3.2 Large autoregressive language models
+With the promising results from RoBERTa-large, we extend MeZO to the OPT family [112], on a
+scale of 13B (Table 1), 30B, and 66B (Table 2). We select both SuperGLUE [98] tasks5 (including
+classification and multiple-choice) and generation tasks. We randomly sample 1000, 500, and 1000
+examples for training, validation, and test, respectively, for each datset. We run MeZO for 20K steps
+and fine-tuning for 5 epochs, or 625 steps, noting that each step of MeZO is substantially faster than
+fine-tuning (see Appendix F.6 for a comparison). Please refer to Appendix E for details. Table 1
+yields the following observations.
+MeZO outperforms memory-equivalent methods and closely approaches fine-tuning results.
+We see that on a 13B-parameter scale, MeZO and its PEFT variants outperform zero-shot, ICL, and
+LP across almost all tasks. When comparing to FT, which costs 12 × more memory (Section 3.4),
+MeZO achieves comparable (within 1%) or better performance on 7 out of the 11 tasks.
+MeZO exhibits strong performance across classification, multiple-choice, and generation tasks.
+We investigate MeZO on generation tasks, which are regarded as more intricate than classification or
+multiple-choice tasks. We evaluate on two question answering datasets, SQuAD [80] and DROP [31].
+We use teacher forcing for training and greedy decoding for inference (details in Appendix E).
+Table 1 shows that, on all generation tasks, MeZO outperforms zero-shot, ICL, and LP, and achieves
+comparable performance to FT. Considering that many applications of fine-tuning LMs – including
+instruction tuning or domain adaptation – target generation tasks, our results underscore the potential
+of MeZO as a memory-efficient technique to optimize large LMs for realistic and exciting applications.
+5We also include SST-2, which is a simple sentiment classification task that we use for development.
+6 | and task types. Moreover, MeZO performs comparably to FT over a number of tasks, while drastically
+reducing the memory cost by, for example, 12× on OPT-13B. Further experiments demonstrate that
+MeZO can optimize non-differentiable objectives, such as accuracy and F1 score (Section 3.3). We
+compare the memory consumption of ICL, FT, LP, and MeZO in Figures 3 and 4.
+3.1 Medium-sized masked language models
+We conduct experiments with RoBERTa-large on sentiment classification, natural language inference,
+and topic classification tasks. We follow past works [35, 67] in studying the few-shot and many-shot
+settings, sampling k examples per class for k = 16 and k = 512 (details in Appendix E). We run
+MeZO for 100K steps and fine-tuning for 1000 steps, noting that one MeZO step is substantially
+faster than one fine-tuning step (see Appendix F.6 for a comparison). We summarize the results from
+Figure 2 and Table 18 below.
+MeZO works significantly better than zero-shot, linear probing, and other memory-equivalent
+methods. On all six diverse tasks, MeZO can optimize the pre-trained model and consistently
+perform better than zero-shot and linear probing. We also show for several tasks that MeZO can
+outperform another ZO algorithm, BBTv2 [90], by up to 11% absolute (Appendix F.4).4
+With enough data, MeZO achieves comparable performance (up to 5% gap) to FT. MeZO
+achieves close-to-fine-tuning performance on k = 16, with some tasks only having 2% gaps. When
+using k = 512 data, the gap between MeZO and FT further reduced to within 5% across all tasks.
+MeZO works well on both full-parameter tuning and PEFT. Full-parameter tuning (MeZO) and
+PEFT (MeZO with LoRA and prefix-tuning) achieve comparable performance, while MeZO (prefix)
+4BBTv2 can only train low-dimensional projected prefixes instead of the full model.
+5",0.4822,0.6873,0.0

@@ -4,7 +4,8 @@ import pickle
 import random
 import numpy as np
 import pandas as pd
-from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain_ollama import OllamaEmbeddings
+from langchain_openai import ChatOpenAI
 
 from src.entity.config_entity import EvaluationConfig, RAGEngineConfig
 from src.components.rag_engine import RAGEngine
@@ -12,7 +13,7 @@ from src.logger.custom_logger import logger
 from src.exception.custom_exception import CustomException
 
 # Number of chunks to sample for testset generation (keeps it fast on local models)
-SAMPLE_CHUNK_COUNT = 5
+SAMPLE_CHUNK_COUNT = 25
 
 
 def cosine_similarity(vec_a: list, vec_b: list) -> float:
@@ -33,16 +34,22 @@ class ModelEvaluation:
         return os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 
     def _get_local_llm(self):
-        return ChatOllama(
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            logger.error("OPENAI_API_KEY not found in environment variables.")
+            raise ValueError("OPENAI_API_KEY missing.")
+        return ChatOpenAI(
             model=self.config.ollama_eval_model,
-            base_url=self._get_base_url(),
+            api_key=api_key,
             temperature=self.config.llm_temperature
         )
 
     def _get_local_embeddings(self):
-        return OllamaEmbeddings(
-            model="nomic-embed-text",
-            base_url=self._get_base_url()
+        from langchain_openai import OpenAIEmbeddings
+        api_key = os.getenv("OPENAI_API_KEY")
+        return OpenAIEmbeddings(
+            model="text-embedding-3-small",
+            api_key=api_key
         )
 
     def _load_raw_chunks(self):

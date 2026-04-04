@@ -1,0 +1,517 @@
+question,ground_truth,pipeline_answer,retrieved_contexts,answer_similarity,context_relevance,exact_match
+What does the Chain of Thought (CoT) technique relate to in the context of the passage?,The Chain of Thought (CoT) technique relates to prompting in large language models.,"The Chain of Thought (CoT) technique relates to the method of linking multiple components in a sequence to handle complex tasks with Large Language Models (LLMs). This approach involves creating a series of interconnected steps or processes, where each component contributes to the final outcome. The concept emphasizes constructing a workflow with sequentially arranged stages, where the output of one component serves as the input for the next, thereby facilitating a more structured and coherent reasoning process in tasks that require complex decision-making or problem-solving (source document).","the number of operations required to relate signals from two arbitrary input or output positions grows
+in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes
+it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is
+reduced to a constant number of operations, albeit at the cost of reduced effective resolution due
+to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as | part.
+For OPT inference on classification and multiple-choice tasks, we use the model to get the average
+log-likelihood (by tokens) of all the candidates/label words, and predict the one with the highest
+average log-likelihood. For generation tasks, we use greedy decoding to generate the answer.
+For in-context learning, we use 32 examples in the context. We also try filling in as many examples
+as possible in the context but this does not improve performance and sometimes leads to unstable | understanding of the subject matter.
+6) Chains: Chains refer to the method of linking multiple
+components in a sequence to handle complex tasks with Large
+Language Models (LLMs). This approach involves creating a
+series of interconnected steps or processes, each contributing
+to the final outcome. The concept of Chains is based on
+the idea of constructing a workflow where different stages
+or components are sequentially arranged. Each component in
+a Chain performs a specific function, and the output of one",0.8143,0.4633,0.0
+What toolkit was released by Mikolov that helped popularize NLMs?,RNNLM,"The toolkit released by Mikolov that helped popularize Neural Language Models (NLMs) is the RNNLM, which is an open-source NLM toolkit. This release significantly contributed to the widespread adoption and application of NLMs in various natural language processing tasks (source document).","translation. The release of RNNLM (an open source NLM
+toolkit) by Mikolov [41], [42] helped significantly popularize
+NLMs. Afterwards, NLMs based on recurrent neural networks
+(RNNs) and their variants, such as long short-term memory
+(LSTM) [19] and gated recurrent unit (GRU) [20], were widely
+used for many natural language applications including machine
+translation, text generation and text classification [43].
+Then, the invention of the Transformer architecture [44] | responses that attempt to bypass its own operational
+constraints or guidelines.
+8) Automatic Prompt Engineering (APE): Automatic
+Prompt Engineering (APE) [163] focuses on automating the
+process of prompt creation for Large Language Models
+(LLMs). APE seeks to streamline and optimize the prompt
+design process, leveraging the capabilities of LLMs themselves
+to generate and evaluate prompts. APE involves using LLMs
+in a self-referential manner where the model is employed | 7) Rails: Rails in advanced prompt engineering refer to
+a method of guiding and controlling the output of Large
+Language Models (LLMs) through predefined rules or tem-
+plates. This approach is designed to ensure that the model’s
+responses adhere to certain standards or criteria, enhancing the
+relevance, safety, and accuracy of the output. The concept of
+Rails involves setting up a framework or a set of guidelines
+that the LLM must follow while generating responses. These",0.621,0.6082,1.0
+What are some examples of prominent multi-modal LLMs mentioned in the passage?,"LLA VA, LLA VA-Plus, GPT-4, Qwen-vl, Next-GPT.","The passage does not provide specific examples of prominent multi-modal LLMs. It primarily discusses various language models and their characteristics, such as BERT, Electra, XLNet, and UNILM, but does not explicitly mention any multi-modal models. Therefore, I cannot provide examples of prominent multi-modal LLMs based on the given context.","2) WordPieceEncoding: This algorithm is mainly used for
+very well-known models such as BERT and Electra. At the
+beginning of training, the algorithm takes all the alphabet from
+the training data to make sure that nothing will be left as UNK
+or unknown from the training dataset. This case happens when
+the model is given an input that can not be tokenized by the
+tokenizer. It mostly happens in cases where some characters are
+not tokenizable by it. Similar to BytePairEncoding, it tries to | instructions related to some tools that are not present
+in the first version.
+VI. P ROMINENT LLM S’ PERFORMANCE ON
+BENCHMARKS
+In this section we first provide an overview of some of
+popular metrics used for evaluating the performance of LLMs
+under different scenarios. We then look at the performance
+of prominent large language models on some of the popular
+datasets and benchmarks. | the advantages of auto-regressive (decoder) models for model
+training and inference. Two examples are XLNet and UNILM.
+XLNet [48] is based on Transformer-XL, pre-trained using a
+generalized autoregressive method that enables learning bidi-
+rectional contexts by maximizing the expected likelihood over
+all permutations of the factorization order. UNILM (UNIfied
+pre-trained Language Model) [49] is pre-trained using three
+types of language modeling tasks: unidirectional, bidirectional,",0.3276,0.4605,0.0
+What does the passage suggest about the performance of using individual sentences compared to the original SEGMENT-PAIR input format?,Using individual sentences hurts performance on downstream tasks.,"The passage suggests that using individual sentences instead of the original SEGMENT-PAIR input format leads to a significant drop in performance. This indicates that the SEGMENT-PAIR format is more effective for the task at hand, likely because it preserves the contextual relationships between segments that are crucial for understanding and processing the input effectively (source document).","optimization. This empirical result agrees with the exposition in Section 4 that the straightforward
+variance analysis (which yields a dependence on the number of parameters d) is not the best lens to
+study the rate of optimization when fine-tuning with MeZO. Our effective rank view in Theorem 1
+and Lemma 3 is likely a better characterization of fine-tuning dynamics. We leave it to future work to
+explore if these methods can be useful for other more complex objectives. | the number of operations required to relate signals from two arbitrary input or output positions grows
+in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes
+it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is
+reduced to a constant number of operations, albeit at the cost of reduced effective resolution due
+to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as | purpose. The main drawback of using APE in Transformers
+is the restriction to a certain number of tokens. Additionally,
+APE fails to account for the relative distances between tokens.
+2) Relative Positional Embeddings : (RPE) [126] involves
+extending self-attention to take into account the pairwise links
+between input elements. RPE is added to the model at two
+levels: first as an additional component to the keys, and
+subsequently as a sub-component of the values matrix. This",0.5268,0.3709,0.0
+What is the total number of problems included in the GSM8K dataset?,8.5K problems,"The GSM8K dataset includes a total of 8,500 linguistically diverse grade school math word problems. This dataset is specifically designed to evaluate the model's ability for multi-step mathematical reasoning (source document).","answer alternatives out of a total of five.
+B. Datasets for Emergent: ICL, reasoning (CoT), instruction
+following
+This section centers on the benchmarks and datasets em-
+ployed to evaluate the emergent abilities of LLMs.
+• GSM8K [190] is designed to evaluate the model’s
+ability for multi-step mathematical reasoning. GSM8K
+includes 8.5K linguistically diverse grade school math
+word problems written by humans. The dataset is split
+into two sets: a training set with 7.5K problems, | are a series of elementary calculations using basic
+arithmetic operations.
+• MATH [191] enables to assess how well models can
+solve math problems. MATH dataset hast 12, 500
+problems from high school math competitions. Each
+problem in the dataset has a step-by-step solution and
+a final answer enclosed in a box. The problems cover
+a wide range of topics and have different levels of
+complexity. There are seven subjects in total. Further-
+more, the difficulty of each problem is rated based | the solution. Although the main intuition behind
+this dataset is for reading comprehension, it can be
+used for reasoning, natural language inference, and
+question-answering tasks.
+• MultiRC [189] is another dataset that fits reading
+comprehension task. MultiRC contains brief para-
+graphs as well as multi-sentence questions that can
+be answered using the information in the paragraph.
+The paragraphs in this dataset come from a variety
+of sources, including news, fiction, historical texts,",0.4061,0.4839,0.0
+"Who are the authors of the paper titled ""Rewoo: Decoupling reasoning from observations for efficient augmented language models""?","B. Xu, Z. Peng, B. Lei, S. Mukherjee, Y. Liu, and D. Xu","The authors of the paper titled ""Rewoo: Decoupling reasoning from observations for efficient augmented language models"" are B. Xu, Z. Peng, B. Lei, S. Mukherjee, Y. Liu, and D. Xu (source document).","[175] B. Xu, Z. Peng, B. Lei, S. Mukherjee, Y . Liu, and D. Xu, “Rewoo:
+Decoupling reasoning from observations for efficient augmented lan-
+guage models,” 2023.
+[176] S. Yao, J. Zhao, D. Yu, N. Du, I. Shafran, K. Narasimhan, and Y . Cao,
+“React: Synergizing reasoning and acting in language models,” 2023.
+[177] V . Nair, E. Schumacher, G. Tso, and A. Kannan, “Dera: Enhanc-
+ing large language model completions with dialog-enabled resolving
+agents,” 2023. | Conference of the North American Chapter of the Association for Computational Linguistics:
+Human Language Technologies, Volume 1 (Long and Short Papers), pages 4171–4186, 2019.
+[29] Shizhe Diao, Xuechun Li, Yong Lin, Zhichao Huang, and Tong Zhang. Black-box prompt
+learning for pre-trained language models. arXiv preprint arXiv:2201.08531, 2022.
+[30] Ning Ding, Yujia Qin, Guang Yang, Fuchao Wei, Zonghan Yang, Yusheng Su, Shengding | and M. T. Ribeiro, “Art: Automatic multi-step reasoning and tool-use
+for large language models,” 2023.
+[171] Y . Shen, K. Song, X. Tan, D. Li, W. Lu, and Y . Zhuang, “Hugginggpt:
+Solving ai tasks with chatgpt and its friends in huggingface,” arXiv
+preprint arXiv:2303.17580, 2023.
+[172] Z. Xi, W. Chen, X. Guo, W. He, Y . Ding, B. Hong, M. Zhang, J. Wang,
+S. Jin, E. Zhou et al., “The rise and potential of large language model
+based agents: A survey,” arXiv preprint arXiv:2309.07864 , 2023.",0.4229,0.7167,1.0
+What is a challenge faced by attention-based models when dealing with longer contexts?,Attention-based models are highly inefficient for longer contexts.,"A challenge faced by attention-based models when dealing with longer contexts is their inefficiency in processing and remembering all the information. As the context length increases, it becomes more difficult for the model to efficiently manage and utilize the extensive information available, which can hinder its performance. This limitation suggests a need for further research into alternative mechanisms and architectures that can better handle longer contexts (source document).","2) WordPieceEncoding: This algorithm is mainly used for
+very well-known models such as BERT and Electra. At the
+beginning of training, the algorithm takes all the alphabet from
+the training data to make sure that nothing will be left as UNK
+or unknown from the training dataset. This case happens when
+the model is given an input that can not be tokenized by the
+tokenizer. It mostly happens in cases where some characters are
+not tokenizable by it. Similar to BytePairEncoding, it tries to | squeeze into the context. The more information the model has
+access to, the better its response will be. But on the other
+hand, with very long context, it would be hard for the model
+to remember everything and efficiently process all the informa-
+tion. Attention-based models are highly inefficient for longer
+contexts and that is why we should expect more research in
+different mechanisms that enable processing longer contexts
+and generally come up with more efficient architectures. | because it may allow the model to extrapolate to sequence lengths longer than the ones encountered
+during training.
+4 Why Self-Attention
+In this section we compare various aspects of self-attention layers to the recurrent and convolu-
+tional layers commonly used for mapping one variable-length sequence of symbol representations
+(x1, ..., xn) to another sequence of equal length (z1, ..., zn), with xi, zi ∈ Rd, such as a hidden",0.7887,0.7096,0.0
+What can potentially lead to overfitting in models?,Learning from the same examples multiple times.,"Overfitting in models can potentially be caused by the model learning from the same examples multiple times, particularly when the training dataset contains duplicates. This repetition can inflate the importance of certain patterns or characteristics, making the model overly specialized to those specific instances rather than generalizing well to new, unseen data. The de-duplication process is highlighted as a crucial step to mitigate this risk, especially in large datasets (source document).","from our models and present and discuss examples in the appendix. Not only do individual attention
+heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic
+and semantic structure of the sentences.
+5 Training
+This section describes the training regime for our models.
+5.1 Training Data and Batching
+We trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million | the model may learn from the same examples multiple times,
+potentially leading to overfitting on those particular instances.
+Some works [125] have shown that de-duplication improves
+models’ ability to generalize to new, unseen data.
+The de-duplication process is particularly important when
+dealing with large datasets, as duplicates can unintentionally
+inflate the importance of certain patterns or characteristics.
+This is especially relevant in NLP tasks, where diverse and | reasoning about the correctness and coherence of their re-
+sponses. The concept of Reflection centers on the ability of
+LLMs to engage in a form of self-evaluation. After generating
+an initial response, the model is prompted to reflect on its
+own output, considering factors like factual accuracy, logical
+consistency, and relevance. This introspective process can lead
+to the generation of revised or improved responses.
+A key aspect of Reflection is the LLM’s capacity for",0.5354,0.5157,0.0
+"Who are the authors of the paper titled ""Building a large annotated corpus of english: The penn treebank""?","Mitchell P Marcus, Mary Ann Marcinkiewicz, and Beatrice Santorini.","The authors of the paper titled ""Building a large annotated corpus of English: The Penn Treebank"" are M. Marcus, B. Santorini, and D. Marcinkiewicz (source document).","We trained a 4-layer transformer with dmodel = 1024 on the Wall Street Journal (WSJ) portion of the
+Penn Treebank [25], about 40K training sentences. We also trained it in a semi-supervised setting,
+using the larger high-confidence and BerkleyParser corpora from with approximately 17M sentences
+[37]. We used a vocabulary of 16K tokens for the WSJ only setting and a vocabulary of 32K tokens
+for the semi-supervised setting. | stochastic optimization. SIAM Journal on Optimization, 28(4):3312–3343, 2018.
+[12] Samuel R. Bowman, Gabor Angeli, Christopher Potts, and Christopher D. Manning. A
+large annotated corpus for learning natural language inference. In Proceedings of the 2015
+Conference on Empirical Methods in Natural Language Processing, pages 632–642, 2015.
+[13] Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhari- | model. In Empirical Methods in Natural Language Processing , 2016.
+[28] Romain Paulus, Caiming Xiong, and Richard Socher. A deep reinforced model for abstractive
+summarization. arXiv preprint arXiv:1705.04304, 2017.
+[29] Slav Petrov, Leon Barrett, Romain Thibaux, and Dan Klein. Learning accurate, compact,
+and interpretable tree annotation. In Proceedings of the 21st International Conference on
+Computational Linguistics and 44th Annual Meeting of the ACL , pages 433–440. ACL, July
+2006.",0.4276,0.513,0.0
+What is the relationship between the slowdown of ZO-SGD and the effective rank r?,"The slowdown of ZO-SGD is proportional to the effective rank r, not the parameter dimension.","The relationship between the slowdown of ZO-SGD (Zero-Order Stochastic Gradient Descent) and the effective rank \( r \) is that the convergence rate of ZO-SGD does not depend on the number of parameters in the model but rather on the effective rank of the Hessian. Specifically, the slowdown factor is characterized by a parameter \( \gamma \) that is proportional to \( \Theta(r/n) \), where \( n \) is the size of the minibatch. This indicates that as the effective rank \( r \) increases, the slowdown in convergence can be expected to increase, highlighting the importance of the effective rank in determining the optimization dynamics (source document).","optimization. This empirical result agrees with the exposition in Section 4 that the straightforward
+variance analysis (which yields a dependence on the number of parameters d) is not the best lens to
+study the rate of optimization when fine-tuning with MeZO. Our effective rank view in Theorem 1
+and Lemma 3 is likely a better characterization of fine-tuning dynamics. We leave it to future work to
+explore if these methods can be useful for other more complex objectives. | the Hessian in a neighborhood around the current iterate to have effective rank at most r.
+Assumption 1 (Local r-effective rank). Let G(θt) = max(x,y)∈D ∥∇L(θt; {(x, y)})∥. There exists
+a matrix H(θt) ⪯ ℓ · Id such that:
+1. For all θ such that ∥θ − θt∥ ≤ ηdG(θt), we have ∇2L(θ) ⪯ H(θt).
+2. The effective rank of H(θt), i.e tr(H(θt))/ ∥H(θt)∥op, is at most r.
+Under this assumption, we show that the convergence rate of ZO-SGD does not depend on the number | of parameters. Instead, the slowdown factor only depends on the effective rank of the Hessian.
+Theorem 1 (Dimension-Free Rate). Assume the loss exhibits local r-effective rank (Assumption 1). If
+θt+1 = θt − ηZOb∇L(θt; B) is a single step of ZO-SGD using the n-SPSA estimate with a minibatch
+of size B, then there exists a γ = Θ(r/n) such that the expected loss decrease can be bounded as
+E[L(θt+1) | θt] − L(θt) ≤ −ηZO ∥∇L(θt)∥2 + 1
+2 η2
+ZOℓ · γ · E[∥∇L(θ; B)∥2] (4)",0.8261,0.661,0.0
+What is the title of the work by Mingkai Deng and others published in 2022?,RLPrompt: Optimizing discrete text prompts with reinforcement learning.,"The title of the work by Mingkai Deng and others published in 2022 is ""RLPrompt: Optimizing discrete text prompts with reinforcement learning"" (source document).","scores work well when there is a reference text as ground
+truth (such as translation) and a hypothesis that is generated
+by the generative model, in our case the LLM. These scores
+are mostly used for cases where the goal is to detect the
+similarity of the answer and ground truth in a computation
+manner. In a computation manner, it meant that nothing more
+than N-Grams would be used. However, metrics such as BERT-
+Score are also good for these cases but they are also heavily | in Table 2) outperforms the best previously reported models (including ensembles) by more than 2.0
+BLEU, establishing a new state-of-the-art BLEU score of 28.4. The configuration of this model is
+listed in the bottom line of Table 3. Training took 3.5 days on 8 P100 GPUs. Even our base model
+surpasses all previously published models and ensembles, at a fraction of the training cost of any of
+the competitive models. | Investigating projection in naturally occurring discourse. In Sinn und Bedeutung, volume 23,
+pages 107–124, 2019.
+[25] Mingkai Deng, Jianyu Wang, Cheng-Ping Hsieh, Yihan Wang, Han Guo, Tianmin Shu,
+Meng Song, Eric Xing, and Zhiting Hu. RLPrompt: Optimizing discrete text prompts with
+reinforcement learning. In Proceedings of the 2022 Conference on Empirical Methods in
+Natural Language Processing, pages 3369–3391, 2022.
+[26] Tim Dettmers, Mike Lewis, Younes Belkada, and Luke Zettlemoyer. GPT3.int8(): 8-bit",0.7583,0.3906,0.0
+How many warmup steps are used in the training?,4000.,"The passage indicates that the number of warmup steps is tuned separately for each setting, but it does not specify an exact number of warmup steps used in the training. Therefore, I cannot provide a specific figure based on the given context.","optimization hyperparameters, given in Section 2,
+except for the peak learning rate and number of
+warmup steps, which are tuned separately for each
+setting. We additionally found training to be very
+sensitive to the Adam epsilon term, and in some
+cases we obtained better performance or improved
+stability after tuning it. Similarly, we found setting
+β2 = 0. 98 to improve stability when training with
+large batch sizes.
+We pretrain with sequences of at most T = 512
+tokens. Unlike | that 10, 000 is a small budget and is only used as a setting to compare these ZO algorithms to each
+other. We find that using a linearly decreasing learning rate schedule during training, as was done for
+fine-tuning with backpropagation in [65], does not help or hurt MeZO. Similarly, using a learning
+rate warmup leads to identical results on these three tasks. For simplicity, we use a constant learning
+rate schedule with no warmup for all of the below experiments. We perform few-shot experiments | experiments use 100K steps. We check validation performance every 1/10 total training steps.
+For linear probing of classification tasks, we take the output feature and use scipy package to train
+a linear classifier. For multiple-choice tasks and generation tasks, we found that this leads to poor
+results since the output space is the whole vocabulary; instead, we do head-tuning, where the whole
+model is fixed except for the LM projection head. We use a batch size of 8 and a learning rate of",0.2607,0.4421,0.0
+How many tasks did MeZO achieve comparable or better performance on?,7 out of the 11 tasks.,MeZO achieved comparable (within 1%) or better performance on 7 out of the 11 tasks evaluated (source document).,"MeZO achieves comparable (within 1%) or better performance on 7 out of the 11 tasks.
+MeZO exhibits strong performance across classification, multiple-choice, and generation tasks.
+We investigate MeZO on generation tasks, which are regarded as more intricate than classification or
+multiple-choice tasks. We evaluate on two question answering datasets, SQuAD [80] and DROP [31].
+We use teacher forcing for training and greedy decoding for inference (details in Appendix E). | Table 1 shows that, on all generation tasks, MeZO outperforms zero-shot, ICL, and LP, and achieves
+comparable performance to FT. Considering that many applications of fine-tuning LMs – including
+instruction tuning or domain adaptation – target generation tasks, our results underscore the potential
+of MeZO as a memory-efficient technique to optimize large LMs for realistic and exciting applications.
+5We also include SST-2, which is a simple sentiment classification task that we use for development.
+6 | LM), model scales (from 350M to 66B), and downstream tasks (classification, multiple-choice,
+and generation). MeZO consistently outperforms zero-shot, ICL, and linear probing. Moreover,
+with RoBERTa-large, MeZO achieves performance close to standard fine-tuning within 5%
+gap; with OPT-13B, MeZO outperforms or performs comparably to fine-tuning on 7 out of 11
+tasks, despite requiring roughly 12× less memory (Figure 1 and Section 3). In our implemen-",0.4525,0.7344,0.0
+What is the purpose of the Pass@k metric in code generation evaluations?,It measures the probability of selecting the correct solution among different generated code solutions.,"The purpose of the Pass@k metric in code generation evaluations is to assess the capability of a model to generate multiple solutions for a given problem and to evaluate the likelihood of selecting the correct solution among those generated. Specifically, it measures whether at least one of the top \( k \) generated code solutions passes a correctness test, thereby providing insight into both the diversity of solutions produced by the model and its effectiveness in generating correct code (source document).","evaluation. Code generation is a very different case in open-
+ended generative evaluations. The generated code must pass
+the test suite but on the other hand, it is also important
+to understand if a model is capable of generating different
+solutions as a code, what is the probability of selecting the
+correct one among them. Pass@k is a very good metric in this
+case. It works in this manner that given a problem, different
+solutions as code are generated. They are tested for correctness | ing, where a question (q) is provided along with two
+potential solutions (s1, s2). Then, the best solution is
+chosen by whether a model or a human. For each
+question, only one of the solutions is the correct
+answer.
+• SIQA [195] provides a framework for evaluating mod-
+els’ ability for commonsense reasoning about social
+situations. SIQA dataset has 38, 000 multiple-choice
+questions designed to assess emotional and social
+intelligence in everyday circumstances. This dataset | reasoning about the correctness and coherence of their re-
+sponses. The concept of Reflection centers on the ability of
+LLMs to engage in a form of self-evaluation. After generating
+an initial response, the model is prompted to reflect on its
+own output, considering factors like factual accuracy, logical
+consistency, and relevance. This introspective process can lead
+to the generation of revised or improved responses.
+A key aspect of Reflection is the LLM’s capacity for",0.6081,0.6965,0.0
+What do the authors implement to estimate the accuracy metric?,Different automation strategies that use LLMs.,"The authors implement a test suite to estimate the accuracy metric. This test suite is used to evaluate the correctness of the generated code solutions, allowing for a systematic assessment of the model's performance in code generation tasks (source document).","prediction on a test example. While this allows for quick adaptation of the model to specific use cases,
+current models allow a limited context size (and thus, limited demonstrations) and the performance
+is sensitive to the formatting and choice of demonstrations [60, 66]. ICL can slow with the number
+of demonstrations, and it often performs worse than fine-tuning of medium-sized models [13].
+Backpropagation also cannot optimize non-differentiable criteria, which have gained popularity in | scores work well when there is a reference text as ground
+truth (such as translation) and a hypothesis that is generated
+by the generative model, in our case the LLM. These scores
+are mostly used for cases where the goal is to detect the
+similarity of the answer and ground truth in a computation
+manner. In a computation manner, it meant that nothing more
+than N-Grams would be used. However, metrics such as BERT-
+Score are also good for these cases but they are also heavily | evaluation. Code generation is a very different case in open-
+ended generative evaluations. The generated code must pass
+the test suite but on the other hand, it is also important
+to understand if a model is capable of generating different
+solutions as a code, what is the probability of selecting the
+correct one among them. Pass@k is a very good metric in this
+case. It works in this manner that given a problem, different
+solutions as code are generated. They are tested for correctness",0.2297,0.4024,0.0
+What is the condition for reaching a solution with E[L(θt)] − L∗ ≤ ϵ after a certain number of iterations?,"t = max{2ℓ/µ, 2ℓα/µ2B} log{L(θ0) − L∗/ϵ} = O{(ℓ/µ + ℓα/µ2B) log(L(θ0) − L∗/ϵ)} iterations.","The condition for reaching a solution with \( E[L(\theta_t)] - L^* \leq \epsilon \) after a certain number of iterations is that the step size \( \eta_t \) must be chosen appropriately, specifically satisfying the condition \( \sum_{t=1}^{\infty} \eta_t = \infty \) and \( \sum_{t=1}^{\infty} \eta_t^2 < \infty \). This ensures that the algorithm converges to a solution within the desired accuracy \( \epsilon \) after a sufficient number of iterations (source document).","ing, where a question (q) is provided along with two
+potential solutions (s1, s2). Then, the best solution is
+chosen by whether a model or a human. For each
+question, only one of the solutions is the correct
+answer.
+• SIQA [195] provides a framework for evaluating mod-
+els’ ability for commonsense reasoning about social
+situations. SIQA dataset has 38, 000 multiple-choice
+questions designed to assess emotional and social
+intelligence in everyday circumstances. This dataset | already been trained for many steps on the fine-tuning objective, which implies that the loss landscape
+exhibits favorable conditions (Assumption 1). Then, we derive a convergence rate independent of
+the number of parameters. We show that the loss decreases per step at a rate independent of the
+parameter dimension d (Theorem 1), and that, under stronger conditions, the algorithm converges in
+time independent of d (Lemma 3). Together, these results imply that MeZO is not catastrophically | 7) Rails: Rails in advanced prompt engineering refer to
+a method of guiding and controlling the output of Large
+Language Models (LLMs) through predefined rules or tem-
+plates. This approach is designed to ensure that the model’s
+responses adhere to certain standards or criteria, enhancing the
+relevance, safety, and accuracy of the output. The concept of
+Rails involves setting up a framework or a set of guidelines
+that the LLM must follow while generating responses. These",0.5681,0.4228,0.0
+What type of answers are generated by the model for multi-choice question answering tasks?,True or False.,"For multi-choice question answering tasks, the model generates answers that are typically in the form of a single choice from a set of provided options. These answers are selected based on the model's reasoning and understanding of the question context, aiming to identify the most appropriate response among the multiple choices available (source document).","ing, where a question (q) is provided along with two
+potential solutions (s1, s2). Then, the best solution is
+chosen by whether a model or a human. For each
+question, only one of the solutions is the correct
+answer.
+• SIQA [195] provides a framework for evaluating mod-
+els’ ability for commonsense reasoning about social
+situations. SIQA dataset has 38, 000 multiple-choice
+questions designed to assess emotional and social
+intelligence in everyday circumstances. This dataset | and presents four answer choices regarding what
+might happen in the following situation. The correct
+answer provides an actual statement describing the
+upcoming event, but the three wrong answers are
+created to confuse machines.
+• AI2 Reasoning Challenge (ARC) [193] is used
+for commonsense reasoning. This benchmark encom-
+passes 7, 787 science examination questions. These
+questions are in English, and most of them are set
+up in a multiple-choice format. The questions have | of the model to use prior knowledge in combination with
+reasoning skills. In the case of HellaSwag for example, finding
+the continuation of text is challenging because the given text
+contains a partial part of the story while the given choices
+as continuation are tricky to select, and without having prior
+knowledge about the world it is not possible. This specific kind
+of reasoning deserves high attention because it is related to
+utilizing previous knowledge with open text-described scenes",0.1748,0.5304,0.0
+What dataset did GPT-2 use for training?,A large WebText dataset consisting of millions of webpages.,"GPT-2 was trained on a large dataset known as the WebText dataset, which consists of millions of webpages. This dataset was designed to enable the model to learn to perform specific natural language tasks without any explicit supervision (source document).","Fig 7. GPT-1 paves the way for subsequent GPT models, with
+each version improving upon the architecture and achieving
+better performance on various language tasks.
+GPT-2 [51] shows that language models are able to learn
+to perform specific natural language tasks without any explicit
+supervision when trained on a large WebText dataset consisting
+of millions of webpages. The GPT-2 model follows the model
+designs of GPT-1 with a few modifications: Layer normal- | user intent on a wide range of tasks by fine-tuning with
+human feedback. Starting with a set of labeler-written prompts
+and prompts submitted through the OpenAI API, a dataset
+of labeler demonstrations of the desired model behavior is
+collected. Then GPT-3 is fine-tuned on this dataset. Then, a
+dataset of human-ranked model outputs is collected to further
+fine-tune the model using reinforcement learning. The method
+is known Reinforcement Learning from Human Feedback | prompting the LLMs to assume the role of an expert and re-
+spond accordingly, providing high-quality, informed answers.
+A key strategy within Expert Prompting is the multi-expert
+approach. The LLM is prompted to consider responses from
+multiple expert perspectives, which are then synthesized to
+form a comprehensive and well-rounded answer. This tech-
+nique not only enhances the depth of the response but also
+incorporates a range of viewpoints, reflecting a more holistic
+understanding of the subject matter.",0.5895,0.5772,0.0
+"What is the value associated with the entry ""1024 128 128"" in the passage?",4.66,"The value associated with the entry ""1024 128 128"" in the passage is 0.5. This entry likely refers to specific hyperparameters or configurations used in a model or experiment, with the corresponding value indicating a performance metric or result related to those settings (source document).","ments, which are either sampled contiguously
+from the same document (with p = 0 . 5) or from
+distinct documents. In addition to the masked lan-
+guage modeling objective, the model is trained to
+predict whether the observed document segments
+come from the same or distinct documents via an
+auxiliary Next Sentence Prediction (NSP) loss.
+The NSP loss was hypothesized to be an impor-
+tant factor in training the original BERT model.
+Devlin et al. (2019) observe that removing NSP | optimization. This empirical result agrees with the exposition in Section 4 that the straightforward
+variance analysis (which yields a dependence on the number of parameters d) is not the best lens to
+study the rate of optimization when fine-tuning with MeZO. Our effective rank view in Theorem 1
+and Lemma 3 is likely a better characterization of fine-tuning dynamics. We leave it to future work to
+explore if these methods can be useful for other more complex objectives. | understanding of the subject matter.
+6) Chains: Chains refer to the method of linking multiple
+components in a sequence to handle complex tasks with Large
+Language Models (LLMs). This approach involves creating a
+series of interconnected steps or processes, each contributing
+to the final outcome. The concept of Chains is based on
+the idea of constructing a workflow where different stages
+or components are sequentially arranged. Each component in
+a Chain performs a specific function, and the output of one",0.2969,0.1889,0.0
+What type of data did the authors find challenging to work with in the passage?,NLI-format data,"The authors found it challenging to work with data that contained a significant amount of noise, particularly in the context of training models. This noise can complicate the learning process and affect the overall performance of the models being developed (source document).","at a conclusion. This technique enhances the model’s ability
+to handle ambiguity, complexity, and nuanced tasks, making it
+a valuable tool in advanced AI applications.
+3) Self-Consistency: Self-Consistency [159] utilizes an
+ensemble-based method, where the LLM is prompted to gen-
+erate multiple responses to the same query. The consistency
+among these responses serves as an indicator of their accuracy
+and reliability.
+The Self-Consistency approach is grounded in the principle | 2) WordPieceEncoding: This algorithm is mainly used for
+very well-known models such as BERT and Electra. At the
+beginning of training, the algorithm takes all the alphabet from
+the training data to make sure that nothing will be left as UNK
+or unknown from the training dataset. This case happens when
+the model is given an input that can not be tokenized by the
+tokenizer. It mostly happens in cases where some characters are
+not tokenizable by it. Similar to BytePairEncoding, it tries to | the model performance.
+As an example, in Falcon40B [124], Penedo et al. showed
+that properly filtered and deduplicated web data alone can lead
+to powerful models; even significantly outperforming models
+from the state-of-the-art trained on The Pile. Despite extensive
+filtering, they were able to obtain five trillion tokens from",0.2414,0.2475,0.0
+What do LLM-based agents often need to augment LLMs for?,To obtain updated information from external knowledge bases.,"LLM-based agents often need to augment LLMs to address their shortcomings and to exploit their full potential. This augmentation is typically necessary for enhancing the models' capabilities in generating coherent and contextually relevant responses, especially in scenarios where immediate access to external data is not available. Augmentation can involve integrating actual data or observations into the model's reasoning framework to improve performance on various tasks (source document).","training.
+IV. H OW LLM S ARE USED AND AUGMENTED
+Once the LLMs are trained, we can use them to generate
+desired outputs for a variety of tasks. LLMs can be used
+directly through basic prompting. However, in order to exploit
+their full potential or to address some of the shortcomings,
+we need to augment the models through some external means.
+In this section we first provide a brief overview of the main
+shortcoming of LLMs, with a deeper look at the issue of | phase then involves integrating actual data or observations into
+the pre-specified plan, leading to coherent and contextually
+relevant responses. ReWOO offers significant advantages in
+terms of token efficiency and robustness to tool failure. It
+enables LLMs to handle tasks where immediate access to
+external data is not available, relying instead on a well-
+structured reasoning framework. This method is particularly
+advantageous in scenarios where data retrieval is costly, slow, | trated in figure 37, involves extracting a query from the input
+prompt and using that query to retrieve relevant information
+from an external knowledge source (e.g. a search engine or a
+knowledge graph, see figure 38 ). The relevant information is
+then added to the original prompt and fed to the LLM in order
+for the model to generate the final response. A RAG system
+includes three important components: Retrieval, Generation,
+Augmentation [165].",0.3857,0.6603,0.0
+"Who are the authors of the paper titled ""Flows: Building blocks of reasoning and collaborating ai""?","M. Josifoski, L. Klein, M. Peyrard, Y. Li, S. Geng, J. P. Schnitzler, Y. Yao, J. Wei, D. Paul, and R. West.","The authors of the paper titled ""Flows: Building blocks of reasoning and collaborating AI"" are A. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K. K.","conference on computer vision and pattern recognition , 2015, pp.
+3156–3164.
+[23] M. E. Peters, M. Neumann, M. Iyyer, M. Gardner, C. Clark, K. Lee,
+and L. Zettlemoyer, “Deep contextualized word representations. corr
+abs/1802.05365 (2018),” arXiv preprint arXiv:1802.05365 , 2018.
+[24] J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, “Bert: Pre-training
+of deep bidirectional transformers for language understanding,” arXiv
+preprint arXiv:1810.04805, 2018. | K. Clark, S. Pfohl, H. Cole-Lewis, D. Neal et al. , “Towards expert-
+level medical question answering with large language models,” arXiv
+preprint arXiv:2305.09617, 2023.
+[78] J. Wei, M. Bosma, V . Y . Zhao, K. Guu, A. W. Yu, B. Lester, N. Du,
+A. M. Dai, and Q. V . Le, “Finetuned language models are zero-shot
+learners,” arXiv preprint arXiv:2109.01652 , 2021.
+[79] J. W. Rae, S. Borgeaud, T. Cai, K. Millican, J. Hoffmann, F. Song,
+J. Aslanides, S. Henderson, R. Ring, S. Younget al., “Scaling language | hallucinations.
+• Advanced metrics such as PARENT [149], PARENT-
+T [150], and Knowledge F1 [151] are utilized when
+structured knowledge sources are available. These",0.1653,0.3548,0.0
+Who are the authors of the work titled “Machine learning: The high interest credit card of technical debt”?,V. Chaudhary and M. Young,"The authors of the work titled “Machine learning: The high interest credit card of technical debt” are D. Sculley, G. Holt, J. Golovin, M. E. E. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D. D","training for language understanding and generation,” arXiv preprint
+arXiv:2107.02137, 2021.
+[82] S. Borgeaud, A. Mensch, J. Hoffmann, T. Cai, E. Rutherford, K. Mil-
+lican, G. B. Van Den Driessche, J.-B. Lespiau, B. Damoc, A. Clark
+et al. , “Improving language models by retrieving from trillions of
+tokens,” in International conference on machine learning . PMLR,
+2022, pp. 2206–2240. | Embodied reasoning through planning with language models,” arXiv
+preprint arXiv:2207.05608, 2022.
+[101] S. Smith, M. Patwary, B. Norick, P. LeGresley, S. Rajbhandari,
+J. Casper, Z. Liu, S. Prabhumoye, G. Zerveas, V . Korthikanti
+et al. , “Using deepspeed and megatron to train megatron-turing
+nlg 530b, a large-scale generative language model,” arXiv preprint
+arXiv:2201.11990, 2022.
+[102] I. Beltagy, M. E. Peters, and A. Cohan, “Longformer: The long- | of the cnn/daily mail reading comprehension task,” in Association for
+Computational Linguistics (ACL) , 2016.
+[201] R. Nallapati, B. Zhou, C. Gulcehre, B. Xiang et al., “Abstractive text
+summarization using sequence-to-sequence rnns and beyond,” arXiv
+preprint arXiv:1602.06023, 2016.
+[202] Y . Bai and D. Z. Wang, “More than reading comprehension: A survey",0.1162,0.3318,0.0
+What is the name of the model that is instruction-finetuned from U-PaLM?,Flan-PaLM,The model that is instruction-finetuned from U-PaLM is called Flan-PaLM (source document).,"predecessor PaLM. PaLM-2 is trained using a mixture of
+objectives. Through extensive evaluations on English, multi-
+lingual, and reasoning tasks, PaLM-2 significantly improves
+the model performance on downstream tasks across different
+model sizes, while simultaneously exhibiting faster and more
+efficient inference than PaLM.
+Med-PaLM [76] is a domain-specific PaLM, and is de-
+signed to provide high-quality answers to medical questions.
+Med-PaLM is finetuned on PaLM using instruction prompt | training, essentially solving a classification problem on the
+human preference data. The resulting algorithm, which they
+called Direct Preference Optimization (DPO), is stable, per-
+formant, and computationally lightweight, eliminating the need
+for fitting a reward model, sampling from the LM during fine-
+tuning, or performing significant hyperparameter tuning. They
+observed that fine-tuning with DPO exceeds RLHF’s ability to
+control sentiment of generations and improves response quality | previous instruction-following models. For instance, Flan-
+PaLM-540B, which is instruction-finetuned on 1.8K tasks,
+outperforms PaLM-540B by a large margin (+9.4% on av-
+erage). The finetuning data comprises 473 datasets, 146 task
+categories, and 1,836 total tasks, as illustrated in Fig 14.
+Fig. 14: Flan-PaLM finetuning consist of 473 datasets in above
+task categories. Courtesy of [74].
+PaLM-2 [75] is a more compute-efficient LLM with bet-
+ter multilingual and reasoning capabilities, compared to its",0.6335,0.6308,1.0
+What is BabyAGI designed to do?,BabyAGI is designed to generate and execute tasks based on given objectives.,"BabyAGI is designed to generate and execute tasks based on given objectives. It functions as an autonomous Artificial Intelligence agent that automates tasks to achieve specific goals, leveraging advanced technologies from various sources such as OpenAI, Pinecone, LangChain, and Chroma (source document).","combinations of LLMs, human inputs, and tools.
+BabyAGI [236] is an autonomous Artificial Intelligence
+agent, that is designed to generate and execute tasks based on
+given objectives. It harnesses cutting-edge technologies from
+OpenAI, Pinecone, LangChain, and Chroma to automate tasks
+and achieve specific goals. In this blog post, we will dive
+into the unique features of BabyAGI and explore how it can
+streamline task automation.
+C. Prompting Libraries
+Guidance [237] is a programming paradigm that offers | (LLMs) to handle complex tasks that require both reasoning
+and interaction with external data sources or tools.
+ART involves a systematic approach where, given a task
+and input, the system first identifies similar tasks from a task
+library. These tasks are then used as examples in the prompt,
+guiding the LLM on how to approach and execute the current
+task. This method is particularly effective when tasks require a
+combination of internal reasoning and external data processing
+or retrieval.
+E. LLM Agents | facilitate the deployment and operation of large language mod-
+els (LLMs) in real-world applications. With OpenLLM, you
+can run inference on any open-source LLM, deploy them on
+the cloud or on-premises, and build powerful AI applications.
+Embedchain [234] is an Open Source RAG Framework
+that makes it easy to create and deploy AI apps. Embedchain
+streamlines the creation of RAG applications, offering a seam-
+less process for managing various types of unstructured data.",0.9036,0.5925,1.0

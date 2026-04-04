@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 root_dir = Path(__file__).parent.parent.parent
 load_dotenv(dotenv_path=root_dir / ".env")
 
-from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 from langchain_classic.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -43,11 +43,11 @@ class RAGEngine:
                 logger.error("Vector database not found. Please ingest documents first.")
                 return None
                 
-            base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-            # Ensure we use same embedding model that vector store uses
-            embeddings = OllamaEmbeddings(
-                model="nomic-embed-text",  # Ideally read from config, but hardcoding for simplicity given prior arch
-                base_url=base_url
+            from langchain_openai import OpenAIEmbeddings
+            api_key = os.getenv("OPENAI_API_KEY")
+            embeddings = OpenAIEmbeddings(
+                model="text-embedding-3-small",
+                api_key=api_key
             )
             return Chroma(
                 persist_directory=str(db_dir),
@@ -82,31 +82,18 @@ class RAGEngine:
                 logger.error("Prerequisites for RAG pipeline missing.")
                 return None
                 
-            from langchain_classic.retrievers import ParentDocumentRetriever
-            from langchain_core.stores import InMemoryStore
-            from langchain_text_splitters import RecursiveCharacterTextSplitter
-            
-            # Reconstruct the InMemoryStore for ParentDocumentRetriever
-            store = InMemoryStore()
-            store.store = raw_chunks  # this is the dict we pickled in vector_store!
-            
-            # Semantic Search via ParentDocumentRetriever
-            child_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=50)
-            vector_retriever = ParentDocumentRetriever(
-                vectorstore=vectorstore,
-                docstore=store,
-                child_splitter=child_splitter,
+            # Standard vector similarity retriever
+            vector_retriever = vectorstore.as_retriever(
+                search_kwargs={"k": self.config.top_k_vector}
             )
-            vector_retriever.search_kwargs = {"k": self.config.top_k_vector}
-            
-            # Keyword Search (Sparse) - feed it the list of parent docs!
-            parent_docs = list(raw_chunks.values())
-            bm25_retriever = BM25Retriever.from_documents(parent_docs)
+
+            # BM25 (Sparse) - raw_chunks is a list of Document objects
+            bm25_retriever = BM25Retriever.from_documents(raw_chunks)
             bm25_retriever.k = self.config.top_k_bm25
-            
+
             # Hybrid Search
             ensemble_retriever = EnsembleRetriever(
-                retrievers=[bm25_retriever, vector_retriever], 
+                retrievers=[bm25_retriever, vector_retriever],
                 weights=self.config.ensemble_weights
             )
             
@@ -117,13 +104,13 @@ class RAGEngine:
                 base_retriever=ensemble_retriever
             )
             
-            groq_api_key = os.getenv("GROQ_API_KEY")
-            if not groq_api_key:
-                logger.error("GROQ_API_KEY not found in environment variables.")
+            openai_api_key = os.getenv("OPENAI_API_KEY")
+            if not openai_api_key:
+                logger.error("OPENAI_API_KEY not found in environment variables.")
                 return None
-            
-            llm = ChatGroq(
+            llm = ChatOpenAI(
                 model=self.config.groq_model,
+                api_key=openai_api_key,
                 temperature=self.config.llm_temperature
             )
             

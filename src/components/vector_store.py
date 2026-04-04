@@ -14,13 +14,13 @@ class VectorStore:
         self.config = config
         
     def get_embeddings(self):
-        """Returns the Ollama embeddings model instance."""
+        """Returns the OpenAI embeddings model instance."""
         try:
-            # Note: We rely on the .env file for the OLLAMA_BASE_URL to keep it secure
-            base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-            return OllamaEmbeddings(
-                model=self.config.ollama_embedding_model,
-                base_url=base_url
+            from langchain_openai import OpenAIEmbeddings
+            api_key = os.getenv("OPENAI_API_KEY")
+            return OpenAIEmbeddings(
+                model="text-embedding-3-small",
+                api_key=api_key
             )
         except Exception as e:
             raise CustomException(e, sys)
@@ -46,33 +46,19 @@ class VectorStore:
             
             logger.info("Initializing embeddings model...")
             embeddings = self.get_embeddings()
-            
-            from langchain_classic.retrievers import ParentDocumentRetriever
-            from langchain_core.stores import InMemoryStore
-            from langchain_text_splitters import RecursiveCharacterTextSplitter
-            
-            logger.info("Initializing ParentDocumentRetriever structure...")
-            store = InMemoryStore()
-            child_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=50)
-            
-            vectorstore = Chroma(
-                embedding_function=embeddings,
+
+            logger.info(f"Embedding {len(chunks)} chunks directly into ChromaDB...")
+            vectorstore = Chroma.from_documents(
+                documents=chunks,
+                embedding=embeddings,
                 persist_directory=str(db_dir)
             )
-            
-            retriever = ParentDocumentRetriever(
-                vectorstore=vectorstore,
-                docstore=store,
-                child_splitter=child_splitter,
-            )
-            
-            logger.info(f"Adding {len(chunks)} parent documents and generating child embeddings...")
-            retriever.add_documents(chunks, ids=None)
-            
+
+            # Save plain chunks for BM25 retriever (list of Document objects)
             chunks_path = self.config.raw_chunks_path
             with open(chunks_path, "wb") as f:
-                pickle.dump(store.store, f)
-                
+                pickle.dump(chunks, f)
+
             logger.info("Vector database and raw chunks created successfully.")
             return vectorstore
             

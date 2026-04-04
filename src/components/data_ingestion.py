@@ -35,14 +35,15 @@ class DataIngestion:
                 
             logger.info(f"Loaded {len(docs)} document pages.")
             
-            # Split text into PARENT chunks (Large context blocks)
-            logger.info("Splitting text into large PARENT chunks for ParentDocumentRetrieval...")
+            # Split text using RecursiveCharacterTextSplitter
+            logger.info(f"Splitting text using RecursiveCharacterTextSplitter (chunk_size={self.config.chunk_size}, chunk_overlap={self.config.chunk_overlap})...")
             text_splitter = RecursiveCharacterTextSplitter(
-                chunk_size=2000,
-                chunk_overlap=200,
+                chunk_size=self.config.chunk_size,
+                chunk_overlap=self.config.chunk_overlap,
+                length_function=len
             )
             chunks = text_splitter.split_documents(docs)
-            logger.info(f"Successfully generated {len(chunks)} Parent chunks.")
+            logger.info(f"Successfully generated {len(chunks)} chunks.")
             
             return chunks
             

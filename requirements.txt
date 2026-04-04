@@ -16,3 +16,5 @@ pandas
 rapidfuzz
 langchain-ollama
 langchain-experimental
+langchain-google-genai
+langchain-openai
