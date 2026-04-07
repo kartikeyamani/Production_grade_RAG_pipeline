@@ -2,7 +2,7 @@
 
 > *"If you can't change your chunking strategy without touching your LLM call, your architecture has failed."*
 
-A **production-grade, enterprise-ready Retrieval-Augmented Generation (RAG) system** built with LangChain, ChromaDB, Groq, Ollama, and Streamlit. This project is engineered following the same three-axis design philosophy used by senior ML engineers at scale: **data flow**, **control flow**, and **feedback flow**.
+A **production-grade, enterprise-ready Retrieval-Augmented Generation (RAG) system** built with LangChain, ChromaDB, OpenAI, FlashRank, RAGAS, Langfuse, and Streamlit. This project is engineered following the same three-axis design philosophy used by senior ML engineers at scale: **data flow**, **control flow**, and **feedback flow**.
 
 ---
 
@@ -13,7 +13,7 @@ Organizations possess vast amounts of unstructured data (research papers, PDF re
 Naive RAG prototypes suffer from three critical failures:
 1. **Hallucinations** — LLMs generate confident but fabricated answers when context is weak.
 2. **Poor Retrieval** — Vector-only search misses exact keywords; BM25-only search misses semantic meaning. Neither alone is production-ready.
-3. **Monolithic Architecture** — Single-script prototypes are impossible to debug, scale, evaluate, or hand off to a team.
+3. **Monolithic Architecture & Silent Failures** — Single-script prototypes are impossible to debug, scale, evaluate, trace, or hand off to a team.
 
 **This project solves all three.**
 
@@ -21,30 +21,27 @@ Naive RAG prototypes suffer from three critical failures:
 
 ## 🏗️ Architectural Reality of a Production RAG System
 
-![Architecture Overview](basic_architecture.png)
-
 The pipeline is organized across three orthogonal axes:
 
 | Axis | Responsibility |
 |---|---|
-| **Ingestion Pipeline** | PDF parsing → Chunking strategy → Embedding model → Dual-index storage (Vector DB + BM25) |
-| **Retrieval & Ranking** | Query processing → Hybrid Retrieval → Score Fusion → Cross-encoder Reranking |
-| **Generation + Eval** | Prompt assembly → LLM generation → Source citation → Automated RAGAS evaluation |
+| **Ingestion Pipeline** | PDF parsing → Chunking strategy (Mathematically Optimized to 2000 Chunks) → Dual-index storage (Vector DB + BM25) |
+| **Retrieval & Ranking** | Query processing → Hybrid Retrieval (RRF) → Score Fusion → Cross-encoder Reranking (FlashRank) |
+| **Generation + Eval** | Prompt assembly → LLM generation (GPT-4o-mini) → Source citation → Automated RAGAS evaluation |
 
 Plus two horizontal layers that run across everything:
-- **Observability Layer** — LangSmith / Langfuse tracing every chunk retrieval, reranker score, and LLM prompt.
-- **Config + CI/CD** — YAML hyperparameters, Docker, and GitHub Actions eval gate.
+- **Observability Layer (Langfuse)** — End-to-end telemetry tracing every chunk retrieval time, reranker score, and LLM prompt. 
+- **Config & Infrastructure** — strict YAML hyperparameters and decoupled modules.
 
 ---
 
 ## ✅ Features Implemented
 
-### Phase 1: Naive RAG Baseline
+### Phase 1: Modular Ingestion & Engine Baseline
 - **PDF Ingestion Engine**: Automatically parses and recursively chunks PDFs from the `data/` folder.
-- **Local Embeddings**: Uses Ollama's `nomic-embed-text` to generate embeddings securely on-device.
-- **Persistent Vector Store**: ChromaDB for local, persistent storage of document vectors.
-- **Conversational Memory**: Full chat history using LangChain's `RunnableWithMessageHistory`.
-- **Fast Inference**: Groq API (`llama-3.3-70b-versatile`) for near-instant language generation.
+- **Persistent Vector Store**: ChromaDB for local, persistent storage of document vectors (`text-embedding-3-small`).
+- **Conversational Memory**: Full chat history leveraging LangChain's `RunnableWithMessageHistory`.
+- **Decoupled Architecture**: Strictly organized OOP separating state, configuration, and components.
 
 ### Phase 2: Advanced Hybrid Retrieval & Reranking
 - **Sparse Retrieval (BM25)**: `rank_bm25` for exact-match keyword search — critical for serial numbers, acronyms, and technical jargon.
@@ -52,42 +49,14 @@ Plus two horizontal layers that run across everything:
 - **Hybrid Fusion**: Merges both result sets using **Reciprocal Rank Fusion (RRF)** via LangChain's `EnsembleRetriever`.
 - **Cross-Encoder Reranking**: `FlashrankRerank` scores the top fused candidates against the actual user query and prunes to the absolute best chunks. *Retrieval is cheap and broad; reranking is expensive and precise.*
 
-### Phase 2.5: Modular Production Architecture (Refactor)
-Refactored from a monolithic script into a fully decoupled, class-based pipeline following the **separation of concerns** principle:
+### Phase 3: Mathematical Evaluation (RAGAS)
+- Benchmarked the pipeline using synthetic Golden QA generative datasets.
+- Tested `512`, `1000`, and `2000` chunk sizes against **Faithfulness**, **Answer Relevancy**, and **Context Precision**.
+- **Result:** We discovered a performance drop in the "uncanny valley" of 1000 chunk sizes. The architecture config is permanently locked to a `2000` chunk-size architecture, proven to optimize deep conceptual contextualization without compromising exact match parameters.
 
-```
-production_grade_RAG/
-├── app.py                      # Streamlit Web UI (end-user interface)
-├── main.py                     # CLI Entrypoint (admin, automation, debugging)
-├── architecture.md             # Visual workflow documentation
-├── config/
-│   ├── config.yaml             # Artifact paths, DB locations (non-sensitive)
-│   └── params.yaml             # Tunable hyperparameters: chunk_size, top_k, LLM temp
-├── src/
-│   ├── components/             # Core logic workers (stateless, reusable)
-│   │   ├── data_ingestion.py   # PDF loading and chunking
-│   │   ├── vector_store.py     # ChromaDB + BM25 index creation
-│   │   └── rag_engine.py       # Full hybrid retrieval + reranking + LLM chain
-│   ├── pipeline/               # Orchestrators (sequence the components)
-│   │   └── stage_01_data_ingestion.py
-│   ├── config/
-│   │   └── configuration.py    # ConfigurationManager — reads YAMLs, returns typed entities
-│   ├── entity/
-│   │   └── config_entity.py    # Dataclasses enforcing strict typed config contracts
-│   ├── constants/
-│   │   └── __init__.py         # Hardcoded paths and magic strings
-│   ├── logger/
-│   │   └── custom_logger.py    # Centralized logging to console + file
-│   ├── exception/
-│   │   └── custom_exception.py # Custom exceptions with file/line-number tracing
-│   └── utils/
-│       └── common.py           # Shared helpers: read_yaml, create_directories
-├── artifacts/                  # Generated assets (vector DB, raw chunks)
-├── data/                       # Drop your PDFs here
-├── research/                   # Jupyter notebooks for experiments
-├── tests/                      # Unit and integration tests
-└── docs/                       # Documentation and diagrams
-```
+### Phase 4: Langfuse Observability & Premium UI
+- **Glassmorphic Streamlit App**: A stunning, production-ready interface that supports real-time dual-index data ingestion triggering and dynamic path cleaning for source references.
+- **Langfuse Telemetry**: `@observe` decorators and callbacks are deeply integrated, offering granular millisecond profiling on retrieval time vs generation time, preventing silent regressions.
 
 ---
 
@@ -95,21 +64,18 @@ production_grade_RAG/
 
 ### 1. Prerequisites
 - Python 3.10+
-- [Ollama](https://ollama.com/) running locally
-
-Pull the required local models:
-```bash
-ollama pull nomic-embed-text
-```
+- OpenAI API Key
+- Langfuse API Keys (Public, Secret, Host)
 
 ### 2. Environment Setup
 Create a `.env` file in the root directory:
 ```env
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_EMBEDDING_MODEL=nomic-embed-text
+OPENAI_API_KEY="sk-proj-..."
 
-GROQ_API_KEY=your_groq_api_key_here
-GROQ_MODEL=llama-3.3-70b-versatile
+# Observability
+LANGFUSE_SECRET_KEY="sk-lf-..."
+LANGFUSE_PUBLIC_KEY="pk-lf-..."
+LANGFUSE_HOST="https://cloud.langfuse.com" 
 ```
 
 ### 3. Installation
@@ -121,19 +87,16 @@ pip install -r requirements.txt
 
 ### 4. Usage
 
-**Ingest documents (first time or when you add new PDFs):**
-```bash
-python main.py --ingest
-```
-
-**Chat via CLI (fast testing and debugging):**
-```bash
-python main.py --chat
-```
-
-**Launch the Streamlit Web UI:**
+**Option A: Launch the Premium Web UI**
 ```bash
 streamlit run app.py
+```
+*Note: You can run the entire pipeline, ingest knowledge, and track Langfuse interactions directly from the Streamlit UI.*
+
+**Option B: Execute Evaluation Scripts / Benchmarks**
+```bash
+python run_benchmark.py
+python run_ragas.py
 ```
 
 ---
@@ -143,18 +106,10 @@ streamlit run app.py
 Based on industry patterns from senior ML engineers, the following decisions guide this architecture:
 
 - **Chunk size/overlap are hyperparameters**, not constants. They live in `params.yaml` and vary by document type.
-- **Retrieval is broad, reranking is precise.** We fetch top-50 candidates and cut to the best top-3 before sending to the LLM. Sending all results is expensive and harmful.
+- **Retrieval is broad, reranking is precise.** We fetch top-10 candidates and cut to the best top-3 before sending to the LLM. Sending all results is expensive and harmful.
 - **Every module fails loudly.** Custom exceptions capture the exact file and line number so debugging is never guesswork.
 - **Configuration is decoupled from code.** Swapping ChromaDB for Pinecone or Groq for OpenAI requires editing a YAML — not the source code.
-
----
-
-## 🗺️ Roadmap
-
-- [ ] **Phase 3 — Automated Evaluation (RAGAS):** Generate a synthetic test suite and score the pipeline on Faithfulness, Answer Relevance, Context Precision, and Context Recall via `python main.py --evaluate`.
-- [ ] **Observability:** Integrate Langfuse to trace every chunk retrieval, reranker score, and LLM prompt before adding more features.
-- [ ] **CI/CD Eval Gate:** GitHub Actions step that runs the evaluation suite on every PR and fails if Faithfulness drops below a threshold — the single thing separating a research project from a production system.
-- [ ] **Ingestion Hardening:** Document hash checks to prevent duplicate embeddings on re-ingestion.
+- **Observability is not optional.** When retrieval fails, we look at the Langfuse waterfall graph to diagnose exactly which retrieval chain layer broke.
 
 ---
 
@@ -162,12 +117,12 @@ Based on industry patterns from senior ML engineers, the following decisions gui
 
 | Layer | Technology |
 |---|---|
-| LLM | Groq (`llama-3.3-70b-versatile`) |
-| Embeddings | Ollama (`nomic-embed-text`) |
+| LLM / Embeddings | OpenAI (`gpt-4o-mini`, `text-embedding-3-small`) |
 | Vector Store | ChromaDB |
 | Sparse Retrieval | rank-bm25 |
 | Reranker | FlashRank |
 | Orchestration | LangChain LCEL |
+| Evaluation Framework | Python Synthetic Sets + RAGAS |
+| Observability | Langfuse |
 | Web UI | Streamlit |
 | Config Management | PyYAML + python-box |
-| Evaluation | Ragas (coming soon) |
