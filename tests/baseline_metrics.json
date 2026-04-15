@@ -1,0 +1,10 @@
+{
+  "_comment": "Baseline RAGAS metrics from Phase 3 evaluation (2000/200 chunking). CI gate requires new metrics >= these values.",
+  "faithfulness": 0.85,
+  "answer_relevancy": 0.80,
+  "context_precision": 0.75,
+  "recorded_at": "2026-04-15",
+  "chunk_size": 2000,
+  "chunk_overlap": 200,
+  "num_questions": 25
+}

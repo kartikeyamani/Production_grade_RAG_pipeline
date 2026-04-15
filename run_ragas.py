@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from datasets import Dataset
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy, context_precision
+from langfuse.langchain import CallbackHandler
 
 # Load environment variables (mostly OPENAI_API_KEY)
 load_dotenv()
@@ -48,6 +49,10 @@ except ImportError:
     ragas_llm = llm
     ragas_emb = embeddings_model
 
+print("Initializing Langfuse Telemetry...")
+langfuse_handler = CallbackHandler()
+langfuse_handler.auth_check()
+
 result = evaluate(
     dataset,
     metrics=[
@@ -56,7 +61,8 @@ result = evaluate(
         context_precision,
     ],
     llm=ragas_llm,
-    embeddings=ragas_emb
+    embeddings=ragas_emb,
+    callbacks=[langfuse_handler]
 )
 
 ragas_df = result.to_pandas()

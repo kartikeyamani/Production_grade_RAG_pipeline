@@ -1,0 +1,133 @@
+name: RAG Eval Gate
+
+# ── Triggers ──────────────────────────────────────────────────────────────────
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:   # allows manual "Run workflow" button in GitHub UI
+
+# ── Permissions ───────────────────────────────────────────────────────────────
+permissions:
+  contents: read
+  pull-requests: write   # needed to post the metric summary comment on the PR
+
+# ── Jobs ──────────────────────────────────────────────────────────────────────
+jobs:
+  ragas-eval-gate:
+    name: "RAGAS Evaluation Gate (25 frozen questions)"
+    runs-on: ubuntu-latest
+    timeout-minutes: 60          # safety cap — full run should be ~20-30 min
+
+    steps:
+      # ── 1. Checkout code ────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Set up Python ────────────────────────────────────────────────────
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # ── 3. Cache pip dependencies ───────────────────────────────────────────
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # ── 4. Install dependencies ─────────────────────────────────────────────
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # ── 5. Write secrets to .env ────────────────────────────────────────────
+      #    Never hard-code keys. All values come from repo Secrets:
+      #    Settings → Secrets and variables → Actions → New repository secret
+      - name: Create .env from GitHub Secrets
+        run: |
+          cat > .env << 'EOF'
+          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+          LANGFUSE_PUBLIC_KEY=${{ secrets.LANGFUSE_PUBLIC_KEY }}
+          LANGFUSE_SECRET_KEY=${{ secrets.LANGFUSE_SECRET_KEY }}
+          LANGFUSE_HOST=${{ secrets.LANGFUSE_HOST }}
+          EOF
+
+      # ── 6. Ingest PDFs from data/raw/ into ChromaDB ─────────────────────────
+      #    The source PDFs are committed to data/raw/ (tracked by git).
+      #    This step rebuilds the vector DB from scratch on every run so that
+      #    the evaluation always reflects the current code's chunking/embedding logic.
+      - name: Ingest PDFs → build ChromaDB
+        run: python tests/ci_ingest.py
+
+      # ── 7. Run RAGAS evaluation gate ────────────────────────────────────────
+      #    Exit code 0 = pass (all metrics >= baseline)
+      #    Exit code 1 = fail (one or more metrics below baseline)
+      - name: Run RAGAS evaluation gate
+        id: ragas
+        run: python tests/ci_eval_gate.py
+
+      # ── 8. Upload results CSV as artifact ───────────────────────────────────
+      #    Always upload (even on failure) so you can inspect per-question scores
+      - name: Upload eval results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ragas-eval-results
+          path: tests/ci_eval_results.csv
+          retention-days: 30
+
+      # ── 9. Post metric summary comment on the PR ────────────────────────────
+      #    Uses the GitHub Script action to write a collapsible summary table.
+      - name: Comment eval summary on PR
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const baselinePath = 'tests/baseline_metrics.json';
+            const resultsPath  = 'tests/ci_eval_results.csv';
+
+            // Parse baseline
+            let baseline = {};
+            try {
+              baseline = JSON.parse(fs.readFileSync(baselinePath, 'utf8'));
+            } catch (_) {}
+
+            // Parse results CSV (first data row averages already printed to log;
+            // we recompute averages here for the comment)
+            let faithfulness = 'N/A', answerRelevancy = 'N/A', contextPrecision = 'N/A';
+            try {
+              const lines  = fs.readFileSync(resultsPath, 'utf8').trim().split('\n');
+              const header = lines[0].split(',');
+              const fIdx   = header.indexOf('faithfulness');
+              const aIdx   = header.indexOf('answer_relevancy');
+              const cIdx   = header.indexOf('context_precision');
+              const rows   = lines.slice(1).map(l => l.split(','));
+              const avg    = (idx) => (rows.reduce((s, r) => s + parseFloat(r[idx] || 0), 0) / rows.length).toFixed(4);
+              faithfulness      = fIdx >= 0 ? avg(fIdx) : 'N/A';
+              answerRelevancy   = aIdx >= 0 ? avg(aIdx) : 'N/A';
+              contextPrecision  = cIdx >= 0 ? avg(cIdx) : 'N/A';
+            } catch (_) {}
+
+            const gate = '${{ steps.ragas.outcome }}' === 'success' ? '✅ PASSED' : '❌ FAILED';
+            const icon = (val, base) => parseFloat(val) >= base ? '✅' : '❌';
+
+            const body = `## 🧪 RAGAS Eval Gate — ${gate}
+
+            | Metric | Baseline | This PR | Status |
+            |---|---|---|---|
+            | Faithfulness | ${baseline.faithfulness ?? 'N/A'} | ${faithfulness} | ${icon(faithfulness, baseline.faithfulness ?? 0)} |
+            | Answer Relevancy | ${baseline.answer_relevancy ?? 'N/A'} | ${answerRelevancy} | ${icon(answerRelevancy, baseline.answer_relevancy ?? 0)} |
+            | Context Precision | ${baseline.context_precision ?? 'N/A'} | ${contextPrecision} | ${icon(contextPrecision, baseline.context_precision ?? 0)} |
+
+            > Evaluated on **25 frozen questions** from \`tests/frozen_testset.csv\`.
+            > Full per-question results available in the **Actions → Artifacts → ragas-eval-results** tab.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body
+            });

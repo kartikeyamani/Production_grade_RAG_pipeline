@@ -177,7 +177,13 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebook
 
 # Custom ignores for production_grade_RAG
+# --- Data: track PDFs in data/raw/ so CI can ingest them ---
 data/*
+!data/raw/
+!data/raw/*.pdf
 !data/.gitkeep
+
+# --- Generated / ephemeral ---
 db/
-*.pdf
+tests/ci_eval_results.csv
+logs/
