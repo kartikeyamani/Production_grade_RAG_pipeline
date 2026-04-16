@@ -1,8 +1,7 @@
 import streamlit as st
 import os
 
-from langfuse import get_client
-from langfuse.langchain import CallbackHandler
+
 from src.pipeline.stage_01_data_ingestion import DataIngestionPipeline
 from src.config.configuration import ConfigurationManager
 from src.components.rag_engine import RAGEngine
@@ -199,17 +198,10 @@ if prompt := st.chat_input("Query the knowledge base..."):
             try:
                 session_id = "streamlit_session_prod" 
                 
-                langfuse=get_client()
-                langfuse_handler = CallbackHandler()
-                
                 response = st.session_state.rag_chain.invoke(
                     {"input": prompt},
                     config={
-                        "configurable": {"session_id": session_id},
-                        "callbacks": [langfuse_handler],
-                        "metadata": {
-                            "langfuse_session_id": session_id
-                        }
+                        "configurable": {"session_id": session_id}
                     }
                 )
                 
