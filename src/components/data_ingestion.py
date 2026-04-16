@@ -8,13 +8,12 @@ from src.exception.custom_exception import CustomException
 from src.entity.config_entity import DataIngestionConfig
 import sys
 
-from langfuse import observe
+
 
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig):
         self.config = config
 
-    @observe(name="pdf_parsing_and_chunking")
     def initiate_data_ingestion(self):
         """
         Loads PDFs from the data directory and splits them into chunks.

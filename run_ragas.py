@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from datasets import Dataset
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy, context_precision
-from langfuse.langchain import CallbackHandler
+
 
 # Load environment variables (mostly OPENAI_API_KEY)
 load_dotenv()
@@ -49,9 +49,6 @@ except ImportError:
     ragas_llm = llm
     ragas_emb = embeddings_model
 
-print("Initializing Langfuse Telemetry...")
-langfuse_handler = CallbackHandler()
-langfuse_handler.auth_check()
 
 result = evaluate(
     dataset,
@@ -61,15 +58,15 @@ result = evaluate(
         context_precision,
     ],
     llm=ragas_llm,
-    embeddings=ragas_emb,
-    callbacks=[langfuse_handler]
+    embeddings=ragas_emb
 )
 
 ragas_df = result.to_pandas()
-out_file = "artifacts/evaluation/multipdfresults/ragas_results_1000.csv"
-ragas_df.to_csv(out_file, index=False)
+# Results not saved to disk — printing to terminal only
+# out_file = "artifacts/evaluation/multipdfresults/ragas_results_1000.csv"
+# ragas_df.to_csv(out_file, index=False)
 
-print(f"\n✅ RAGAS evaluation complete! Saved to {out_file}")
+print("\n✅ RAGAS evaluation complete!")
 print("\n--- RAGAS Final Metric Averages (1000/200) ---")
 print(f"Faithfulness       : {ragas_df['faithfulness'].mean():.4f}")
 print(f"Answer Relevancy   : {ragas_df['answer_relevancy'].mean():.4f}")

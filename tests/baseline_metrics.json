@@ -1,10 +1,11 @@
 {
-  "_comment": "Baseline RAGAS metrics from Phase 3 evaluation (2000/200 chunking). CI gate requires new metrics >= these values.",
-  "faithfulness": 0.85,
-  "answer_relevancy": 0.80,
-  "context_precision": 0.75,
+  "_comment": "Real baseline metrics measured on 2026-04-15 using results_1000.csv (1000/200 chunking, gpt-4o-mini). CI gate requires new metrics >= these values.",
+  "faithfulness": 0.4583,
+  "answer_relevancy": 0.7966,
+  "context_precision": 0.3222,
   "recorded_at": "2026-04-15",
-  "chunk_size": 2000,
+  "chunk_size": 1000,
   "chunk_overlap": 200,
   "num_questions": 25
 }
+

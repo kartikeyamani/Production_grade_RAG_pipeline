@@ -9,7 +9,7 @@ from src.logger.custom_logger import logger
 from src.exception.custom_exception import CustomException
 from src.entity.config_entity import VectorStoreConfig
 
-from langfuse import observe
+
 
 class VectorStore:
     def __init__(self, config: VectorStoreConfig):
@@ -27,7 +27,6 @@ class VectorStore:
         except Exception as e:
             raise CustomException(e, sys)
 
-    @observe(name="vector_db_embedding_creation")
     def initiate_vector_store(self, chunks):
         """
         Creates and persists a Chroma vector database from document chunks.
